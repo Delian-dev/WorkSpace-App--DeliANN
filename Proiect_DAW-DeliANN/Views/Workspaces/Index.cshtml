@@ -1,0 +1,78 @@
+﻿@model Proiect_DAW_DeliANN.Models.Workspace
+
+<br />
+<h2 class="text-center">Afisare Workspaces</h2>
+
+<br />
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert-success p-3 rounded-3 text-center mb-5 @ViewBag.Alert">
+        @ViewBag.Message
+    </div>
+}
+
+<br />
+
+@* Motorul de cautare *@
+<form method="GET">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search topics or keywords" name="search"
+               value="@ViewBag.SearchString">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </div>
+</form>
+
+
+@foreach (var workspace in ViewBag.Workspaces)
+{
+    <div class="card">
+
+        <div class="card-body">
+
+            <h3 class="card-title alert-success py-3 px-3 rounded-2">@workspace.Name</h3>
+
+            <div class="card-text">@Html.Raw(workspace.Description)</div>
+
+            <div class="d-flex justify-content-between flex-row mt-5">
+
+                <div><i class="bi bi-globe"></i> @workspace.Category.CategoryName</div>
+
+                <span class="alert-success">@workspace.Date</span>
+
+            </div>
+
+        </div>
+
+        <a class="btn btn-success" asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId">Afisare Workspace</a>
+
+    </div>
+
+    <br />
+    <br />
+}
+
+@* Afisarea paginata a articolelor *@
+
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="@ViewBag.PaginationBaseUrl=1" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            @for (int i = 1; i <= ViewBag.lastPage; i++)
+            {
+                <li class="page-item"> <a class="page-link" href="@ViewBag.PaginationBaseUrl=@i">@(i)</a> </li>
+            }
+
+            <li class="page-item">
+                <a class="page-link" href="@ViewBag.PaginationBaseUrl=@(ViewBag.lastPage)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
