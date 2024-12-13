@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Lista categorii";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+@if (TempData.ContainsKey("message"))
+{
+    <h1>@ViewBag.message</h1>
+}
+
+<br />
+
+@foreach (Proiect_DAW_DeliANN.Models.Category category in ViewBag.Categories)
+{
+    <div class="form-group">
+        <label asp-for="@category.CategoryName" class="form-label">Denumire categorie</label>
+        <div><i class="bi bi-globe"></i> @category.CategoryName</div>
+    </div>
+    <br />
+    <a class="btn alert-success" asp-controller="Categories" asp-action="Show" asp-route-id="@category.CategoryId">Afisare categorie</a>
+    <a class="btn alert-success" asp-controller="Categories" asp-action="Edit" asp-route-id="@category.CategoryId">Editare categorie</a>
+    <br />
+    <br />
+
+}
+<br />
+<a class="btn btn-success" asp-controller="Categories" asp-action="New">Adauga o noua categorie</a>
+<br />
