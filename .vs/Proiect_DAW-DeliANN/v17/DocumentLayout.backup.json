@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/aspnet_Proiect_DAW_DeliANN_0847de3e_ec1d_4aa4_84ee_a1d9d0368a3e/True/SqlTable/dbo.ApplicationUserWorkspaces.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|c:\\users\\deliandan\\onedrive - unibuc.ro\\desktop\\fmi\\fmi-anul 2\\semestrul 1\\asp.net\\proiect_daw-deliann\\proiect_daw-deliann\\controllers\\workspacescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|solutionrelative:proiect_daw-deliann\\controllers\\workspacescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,8 +14,8 @@
       "RelativeMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|solutionrelative:proiect_daw-deliann\\views\\workspaces\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|c:\\users\\deliandan\\onedrive - unibuc.ro\\desktop\\fmi\\fmi-anul 2\\semestrul 1\\asp.net\\proiect_daw-deliann\\proiect_daw-deliann\\models\\workspace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|solutionrelative:proiect_daw-deliann\\models\\workspace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|c:\\users\\deliandan\\onedrive - unibuc.ro\\desktop\\fmi\\fmi-anul 2\\semestrul 1\\asp.net\\proiect_daw-deliann\\proiect_daw-deliann\\models\\applicationuserworkspaces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|solutionrelative:proiect_daw-deliann\\models\\applicationuserworkspaces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|c:\\users\\deliandan\\onedrive - unibuc.ro\\desktop\\fmi\\fmi-anul 2\\semestrul 1\\asp.net\\proiect_daw-deliann\\proiect_daw-deliann\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -23,8 +26,8 @@
       "RelativeMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|solutionrelative:proiect_daw-deliann\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|c:\\users\\deliandan\\onedrive - unibuc.ro\\desktop\\fmi\\fmi-anul 2\\semestrul 1\\asp.net\\proiect_daw-deliann\\proiect_daw-deliann\\models\\applicationuserworkspaces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|solutionrelative:proiect_daw-deliann\\models\\applicationuserworkspaces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|c:\\users\\deliandan\\onedrive - unibuc.ro\\desktop\\fmi\\fmi-anul 2\\semestrul 1\\asp.net\\proiect_daw-deliann\\proiect_daw-deliann\\models\\workspace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|solutionrelative:proiect_daw-deliann\\models\\workspace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D370FDD9-FE80-4A50-B724-C0826AC42ED2}|Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN.csproj|c:\\users\\deliandan\\onedrive - unibuc.ro\\desktop\\fmi\\fmi-anul 2\\semestrul 1\\asp.net\\proiect_daw-deliann\\proiect_daw-deliann\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -78,89 +81,99 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "dbo.ApplicationUserWorkspaces [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/aspnet_Proiect_DAW_DeliANN_0847de3e_ec1d_4aa4_84ee_a1d9d0368a3e/True/SqlTable/dbo.ApplicationUserWorkspaces.sql",
+              "ToolTip": "dbo.ApplicationUserWorkspaces [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-12-13T21:16:18.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAABkAAAAAAAAAAAAmwDgAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAAmwDgAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-13T16:26:20.29Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Views\\Workspaces\\Index.cshtml",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Views\\Workspaces\\Index.cshtml",
               "ToolTip": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Views\\Workspaces\\Index.cshtml",
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Views\\Workspaces\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAgwEgAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-13T16:08:37.067Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "WorkspacesController.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Controllers\\WorkspacesController.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Controllers\\WorkspacesController.cs",
               "ToolTip": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Controllers\\WorkspacesController.cs",
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Controllers\\WorkspacesController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAgwDIAAABzAAAAAAAAAA==",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAYwKEAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-13T15:45:00.265Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Workspace.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Models\\Workspace.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Models\\Workspace.cs",
               "ToolTip": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Models\\Workspace.cs",
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Models\\Workspace.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAiwBsAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAiwBoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-07T11:03:41.795Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "ApplicationUserWorkspaces.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Models\\ApplicationUserWorkspaces.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Models\\ApplicationUserWorkspaces.cs",
               "ToolTip": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Models\\ApplicationUserWorkspaces.cs",
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Models\\ApplicationUserWorkspaces.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-07T11:09:38.523Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Models\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Models\\ApplicationUser.cs",
               "ToolTip": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Models\\ApplicationUser.cs",
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Models\\ApplicationUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-07T11:07:52.541Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Channel.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Models\\Channel.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Models\\Channel.cs",
@@ -168,11 +181,12 @@
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Models\\Channel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T14:14:17.24Z"
+              "WhenOpened": "2024-12-13T14:14:17.24Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "CategoriesController.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Controllers\\CategoriesController.cs",
@@ -185,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Controllers\\UsersController.cs",
@@ -193,11 +207,12 @@
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Controllers\\UsersController.cs",
               "ViewState": "AgIAADcAAAAAAAAAAAA5wJcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T08:15:10.096Z"
+              "WhenOpened": "2024-12-11T08:15:10.096Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Show.cshtml",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Views\\Users\\Show.cshtml",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Views\\Users\\Show.cshtml",
@@ -205,11 +220,12 @@
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Views\\Users\\Show.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-11T08:23:37.263Z"
+              "WhenOpened": "2024-12-11T08:23:37.263Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Views\\Users\\Edit.cshtml",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Views\\Users\\Edit.cshtml",
@@ -217,11 +233,12 @@
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Views\\Users\\Edit.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-11T08:23:49.741Z"
+              "WhenOpened": "2024-12-11T08:23:49.741Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Views\\Users\\Index.cshtml",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Views\\Users\\Index.cshtml",
@@ -229,11 +246,12 @@
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Views\\Users\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-11T08:23:24.084Z"
+              "WhenOpened": "2024-12-11T08:23:24.084Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\appsettings.json",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\appsettings.json",
@@ -241,11 +259,12 @@
               "RelativeToolTip": "Proiect_DAW-DeliANN\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-12-07T10:59:25.734Z"
+              "WhenOpened": "2024-12-07T10:59:25.734Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "20241207153424_ClassesCreation.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Data\\Migrations\\20241207153424_ClassesCreation.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Data\\Migrations\\20241207153424_ClassesCreation.cs",
@@ -256,7 +275,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Data\\ApplicationDbContext.cs",
@@ -264,11 +283,12 @@
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAQwCsAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T14:51:43.159Z"
+              "WhenOpened": "2024-12-07T14:51:43.159Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Program.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Program.cs",
@@ -276,11 +296,12 @@
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Program.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T10:56:55.379Z"
+              "WhenOpened": "2024-12-07T10:56:55.379Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "SeedData.cs",
               "DocumentMoniker": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\Models\\SeedData.cs",
               "RelativeDocumentMoniker": "Proiect_DAW-DeliANN\\Models\\SeedData.cs",
@@ -288,7 +309,8 @@
               "RelativeToolTip": "Proiect_DAW-DeliANN\\Models\\SeedData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T15:06:34.461Z"
+              "WhenOpened": "2024-12-07T15:06:34.461Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -44,7 +44,37 @@
 
         </div>
 
-        <a class="btn btn-success" asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId">Afisare Workspace</a>
+        @*Verificare daca suntem Admin/Editor => avem acces la orice workspace*@
+        @if(ViewBag.EsteAdmin || ViewBag.EsteEditor)
+        {
+            <button class="btn btn-success" asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId">Enter Workspace</button>
+        }
+        else
+        {
+              @* Verificare status User curent - workspace*@
+            var userWorkspaceRelations = ViewBag.UserWorkspaceRelations as IEnumerable<dynamic>;
+            var relation = userWorkspaceRelations.FirstOrDefault(uw => uw.WorkspaceId == workspace.WorkspaceId);
+
+            @if(relation == null)
+            {
+                <form asp-controller="Workspaces" asp-action="RequestToJoin" method="post">
+                    <input type="hidden" name="WorkspaceId" value="@workspace.WorkspaceId"/>
+                    <button class="btn btn-primary" type="submit">Request to join</button> @*Mergem spre functia din controller ce da add la legatura user-workspace in tabelul asociativ cu status=False*@
+                </form>
+               
+            }
+            else if(relation.status)
+            {
+                <button class="btn btn-success" asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId">Enter Workspace</button>
+            }
+            else
+            {
+                 <form asp-controller="Workspaces" asp-action="CancelRequest" method="post">
+                    <input type="hidden" name="WorkspaceId" value="@workspace.WorkspaceId"/>
+                    <button class="btn btn-warning">Cancel request</button> @*Stergem legatura din tabelul asociativ*@
+                 </form>
+            }   
+        }
 
     </div>
 
