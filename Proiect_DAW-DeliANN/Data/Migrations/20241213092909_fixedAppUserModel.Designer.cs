@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proiect_DAW_DeliANN.Data;
 
@@ -11,9 +12,11 @@ using Proiect_DAW_DeliANN.Data;
 namespace Proiect_DAW_DeliANN.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241213092909_fixedAppUserModel")]
+    partial class fixedAppUserModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,7 +247,7 @@ namespace Proiect_DAW_DeliANN.Data.Migrations
                     b.Property<int?>("WorkspaceId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("status")
+                    b.Property<bool?>("status")
                         .HasColumnType("bit");
 
                     b.HasKey("Id", "UserId", "WorkspaceId");

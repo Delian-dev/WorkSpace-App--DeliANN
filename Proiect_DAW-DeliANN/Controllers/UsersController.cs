@@ -110,38 +110,39 @@ namespace ArticlesApp.Controllers
         public IActionResult Delete(string id) //Trebuie modificata logica de stergere
         {
             var user = db.Users
-                         .Include("Articles")
-                         .Include("Comments")
-                         .Include("Bookmarks")
+                         .Include("ApplicationUserWorkspaces")
+                         .Include("Posts")
+                         .Include("Reactions")
                          .Where(u => u.Id == id)
                          .First();
 
-            // Delete user comments - Stergere reactii user
-            //if (user.Comments.Count > 0)
-            //{
-            //    foreach (var comment in user.Comments)
-            //    {
-            //        db.Comments.Remove(comment);
-            //    }
-            //}
+            //  Stergere reactii user din baza de date
+            if (user.Reactions.Count > 0)
+            {
+                foreach (var reaction in user.Reactions)
+                {
+                    db.Reactions.Remove(reaction);
+                }
+            }
 
-            // Delete user bookmarks - Stergere postari user
-            //if (user.Bookmarks.Count > 0)
-            //{
-            //    foreach (var bookmark in user.Bookmarks)
-            //    {
-            //        db.Bookmarks.Remove(bookmark);
-            //    }
-            //}
+            // Stergere postari user
+            if (user.Posts.Count > 0)
+            {
+                foreach (var post in user.Posts)
+                {
+                    db.Posts.Remove(post);
+                }
+            }
 
-            // Delete user articles - Stegere workspace-uri user
-            //if (user.Articles.Count > 0)
-            //{
-            //    foreach (var article in user.Articles)
-            //    {
-            //        db.Articles.Remove(article);
-            //    }
-            //}
+            // Stergere user din workspace-urile din care face parte (inserarile din tabelul intermediar ApplicationUserWorkspaces)
+            //!! Sa nu uitam sa tratam cazul in care un workspace ramane fara singurul moderator
+            if (user.ApplicationUserWorkspaces.Count > 0)
+            {
+                foreach (var user_workspace in user.ApplicationUserWorkspaces)
+                {
+                    db.ApplicationUserWorkspaces.Remove(user_workspace);
+                }
+            }
 
             db.ApplicationUsers.Remove(user);
 
