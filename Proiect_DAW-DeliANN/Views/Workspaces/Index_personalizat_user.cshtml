@@ -13,10 +13,7 @@
 }
 
 <br />
-
-@if (!ViewBag.EsteAdmin && !ViewBag.EsteEditor) @* Are logica sa vedem butoanele de comutare intre toate workspace-urile respectiv doar cele de care apartinem numai daca suntem useri normali. Admin si Editor oricum au acces la toate*@
-{
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center"> @*putem afisa linistiti butoane pt ca oricum doar userii au voie sa vada pagina asta*@
 
         <a class="btn btn-outline-success" href="/Workspaces/Index/">Exploreaza Workspace-urile</a>
         <br />
@@ -24,8 +21,6 @@
         <br />
 
     </div>
-}
-
 <br />
 @* Motorul de cautare *@
 <form method="GET">
@@ -58,25 +53,12 @@
         </div>
 
         @*Verificare daca suntem Admin/Editor => avem acces la orice workspace*@
-        @if(ViewBag.EsteAdmin || ViewBag.EsteEditor)
-        {
-            <button class="btn btn-success" asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId">Enter Workspace</button>
-        }
-        else
-        {
-              @* Verificare status User curent - workspace*@
+            @* Verificare status User curent - workspace*@
+        @{
             var userWorkspaceRelations = ViewBag.UserWorkspaceRelations as IEnumerable<dynamic>;
             var relation = userWorkspaceRelations.FirstOrDefault(uw => uw.WorkspaceId == workspace.WorkspaceId);
 
-            @if(relation == null)
-            {
-                <form asp-controller="Workspaces" asp-action="RequestToJoin" method="post">
-                    <input type="hidden" name="WorkspaceId" value="@workspace.WorkspaceId"/>
-                    <button class="btn btn-primary" type="submit">Request to join</button> @*Mergem spre functia din controller ce da add la legatura user-workspace in tabelul asociativ cu status=False*@
-                </form>
-               
-            }
-            else if(relation.status)
+            if (relation.status) @*Putem verifica direct daca status e true/false pt ca stim clar ca workshop-urile selectate au acest camp cu userul*@
             {
                 <div class="d-flex justify-content-center">
                     <button class="btn btn-success" asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId">Enter Workspace</button>
@@ -88,11 +70,11 @@
             }
             else
             {
-                 <form asp-controller="Workspaces" asp-action="CancelRequest" method="post">
-                    <input type="hidden" name="WorkspaceId" value="@workspace.WorkspaceId"/>
-                    <button class="btn btn-warning">Cancel request</button> @*Stergem legatura din tabelul asociativ*@
-                 </form>
-            }   
+                <form asp-controller="Workspaces" asp-action="CancelRequest" method="post">
+                    <input type="hidden" name="WorkspaceId" value="@workspace.WorkspaceId" />
+                    <button class="btn btn-warning">Cancel request</button> @*Stergem legatura din tabelul asociativ (cu status=false)*@
+                </form>
+            }
         }
 
     </div>
