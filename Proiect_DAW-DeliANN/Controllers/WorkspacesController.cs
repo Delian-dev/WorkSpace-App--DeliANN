@@ -244,10 +244,24 @@ namespace Proiect_DAW_DeliANN.Controllers
                 //better safe than sorry
                 workspace.Description = sanitizer.Sanitize(workspace.Description);
                 workspace.Name = sanitizer.Sanitize(workspace.Name);
-                //sa nu uit aici sa pun chestia cu status ca e automata!!!!!!!!!!!
                 ///adding to the db
                 db.Workspaces.Add(workspace);
                 db.SaveChanges();
+
+                //sa nu uit aici sa pun chestia cu status ca e automata!!!!!!!!!!
+                //cream si inserarea in tabelul asociativ - status=true, moderator=true
+                var userWorkspace = new ApplicationUserWorkspace
+                {
+                    UserId = workspace.UserId,
+                    WorkspaceId = workspace.WorkspaceId,
+                    status = true,
+                    moderator = true
+                };
+
+                //adaugare in tabelul asociativ
+                db.ApplicationUserWorkspaces.Add(userWorkspace);
+                db.SaveChanges();
+
                 //message to show all went smoothly
                 TempData["message"] = "The new workspace has been added!";
                 TempData["messageType"] = "alert-success";
@@ -263,7 +277,8 @@ namespace Proiect_DAW_DeliANN.Controllers
         }
         //editing the workspace
         ///category is in a dropdown
-        ///you can edit a workspace only if you are an admin or if the workspace belongs to you
+        ///anita da-o in mama ei de engleza macar comentariile sa fie in romana:)))
+        ///se poate edita un workspace daca esti: Admin/Editor sau User moderator
         ///automatically GET
         [Authorize(Roles = "Admin, User, Editor")]
         public IActionResult Edit(int id)
@@ -274,11 +289,20 @@ namespace Proiect_DAW_DeliANN.Controllers
                                       .Where(wrk => wrk.WorkspaceId == id)
                                       .First();
             workspace.Categ = GetAllCategories();
-            if ((workspace.UserId == _userManager.GetUserId(User)) ||
-                User.IsInRole("Admin") || User.IsInRole("Editor"))
+
+            var userId = _userManager.GetUserId(User); //id-ul userului curent
+            var isAdminorEditor = User.IsInRole("Admin") || User.IsInRole("Editor");
+
+            //verificam daca user-ul care vrea sa editeze este moderator in workspace
+            var isModeratorInWorkspace = db.ApplicationUserWorkspaces
+                                           .Where(u => u.WorkspaceId == id && u.UserId == userId && u.moderator == true)
+                                           .Any();
+
+            if(isAdminorEditor || isModeratorInWorkspace) //nu are rost sa verificam daca userId==workspace.UserId pt ca acesta oricum e bagat by default cu moderator=true cand se creeaza workspace-ul (sper)
             {
-                return View(workspace);
+                return View(workspace); //userul curent are voie sa editeze
             }
+
             else
             {
 
@@ -287,6 +311,7 @@ namespace Proiect_DAW_DeliANN.Controllers
                 return RedirectToAction("Index");
             }
         }
+
         ///addding the edits to the database
         [HttpPost]
         [Authorize(Roles = "Admin, User, Editor")]
@@ -297,8 +322,15 @@ namespace Proiect_DAW_DeliANN.Controllers
             Workspace workspace = db.Workspaces.Find(id);
             if (ModelState.IsValid)
             {
-                if ((workspace.UserId == _userManager.GetUserId(User))
-                    || User.IsInRole("Admin") || User.IsInRole("Editor"))
+                var userId = _userManager.GetUserId(User); //id-ul userului curent
+                var isAdminorEditor = User.IsInRole("Admin") || User.IsInRole("Editor");
+
+                //verificam daca user-ul care vrea sa editeze este moderator in workspace
+                var isModeratorInWorkspace = db.ApplicationUserWorkspaces
+                                               .Where(u => u.WorkspaceId == id && u.UserId == userId && u.moderator == true)
+                                               .Any();
+
+                if (isAdminorEditor || isModeratorInWorkspace)
                 {
                     workspace.Date = DateTime.Now;
                     workspace.CategoryId = requestWorkspace.CategoryId;
@@ -331,8 +363,16 @@ namespace Proiect_DAW_DeliANN.Controllers
             Workspace workspace = db.Workspaces.Include("Channels")
                                                 .Where(wrk => wrk.WorkspaceId == id)
                                                 .First();
-            if ((workspace.UserId == _userManager.GetUserId(User))
-                               || User.IsInRole("Admin") || User.IsInRole("Editor"))
+
+            var userId = _userManager.GetUserId(User); //id-ul userului curent
+            var isAdminorEditor = User.IsInRole("Admin") || User.IsInRole("Editor");
+
+            //verificam daca user-ul care vrea sa stearga este moderator in workspace
+            var isModeratorInWorkspace = db.ApplicationUserWorkspaces
+                                           .Where(u => u.WorkspaceId == id && u.UserId == userId && u.moderator == true)
+                                           .Any();
+
+            if (isAdminorEditor || isModeratorInWorkspace)
             {
                 db.Workspaces.Remove(workspace);
                 db.SaveChanges();
@@ -412,7 +452,7 @@ namespace Proiect_DAW_DeliANN.Controllers
                                                 .Include("User")
                                                 .Where(wrk => wrk.WorkspaceId == id)
                                                 .First();
-            SetAccessRights();
+            SetAccessRights(id); //setam privilegiile pt workspace-ul pe care vrem sa intram
 
             if (TempData.ContainsKey("message"))
             {
@@ -426,15 +466,21 @@ namespace Proiect_DAW_DeliANN.Controllers
         // butoanele aflate in view-uri
         //adica editor + admin 100% le vad
         //dar si user-ul care a creat workspace-ul le vede (restul nu)
-        private void SetAccessRights()
+        private void SetAccessRights(int workspaceId)
         {
             ViewBag.AfisareButoane = false;
 
-            if (User.IsInRole("Editor"))
+            string currentUserId = _userManager.GetUserId(User); //afisam butoanele daca userul e Admin/Editor/Moderator pe workspace
+            bool isModerator = db.ApplicationUserWorkspaces
+                              .Any(auw => auw.UserId == currentUserId && auw.WorkspaceId == workspaceId && auw.moderator == true);
+
+            ViewBag.EsteModerator = isModerator;
+            if (User.IsInRole("Editor") || User.IsInRole("Admin") || isModerator)
             {
                 ViewBag.AfisareButoane = true;
             }
 
+            //de astea nush daca mai avem nevoie
             ViewBag.UserCurent = _userManager.GetUserId(User);
 
             ViewBag.EsteAdmin = User.IsInRole("Admin");
@@ -451,7 +497,8 @@ namespace Proiect_DAW_DeliANN.Controllers
             {
                 UserId = userId,
                 WorkspaceId = workspaceId,
-                status = false
+                status = false,
+                moderator=null
             };
 
             db.ApplicationUserWorkspaces.Add(newRelation); //updatam tabelul asociativ

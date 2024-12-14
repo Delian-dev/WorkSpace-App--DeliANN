@@ -19,6 +19,8 @@ namespace Proiect_DAW_DeliANN.Models
             public virtual Workspace? Workspace { get; set; }
 
             public bool status { get; set; } //lasam doar true/false: True-face parte din workspace, false-pending. Cand se da un request de join sa va insera automat cu false. Cand se creeaza un workspace, se insereaza automat cu true
+        
+            public bool? moderator { get; set; } //null cat timp status = false, apoi cand user-ul devine membru, moderator=false daca e user normal, moderator=true daca este user tip moderator pe acel workspace
         }
     }
 }
