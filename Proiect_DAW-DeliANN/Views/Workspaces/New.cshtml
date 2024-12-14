@@ -1,0 +1,58 @@
+﻿@model Proiect_DAW_DeliANN.Models.Workspace
+
+
+<h2 class="text-center mt-5">Add a new workspace</h2>
+
+<br />
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+
+            <form method="post" asp-action="New" asp-controller="Workspaces">
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Name" class="form-label">Name your workspace:</label>
+                    <br />
+                    <input asp-for="Name" class="form-control" />
+
+                    <!-- Mesaj de validare pentru workspace -->
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                    <br /><br />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description" class="form-label">Give a description to your workspace:</label>
+                    <br />
+                    <textarea asp-for="Description" class="form-control summernote"></textarea>
+
+                    <!-- Mesaj de validare pentru descrierea workspace-ului -->
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
+                    <br /><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="CategoryId">Select the category</label>
+                    <br />
+                    <select asp-for="CategoryId" asp-items="Model.Categ" class="form-control">
+                        <option value="">Selectati categoria</option>
+                    </select>
+
+                    <!-- Mesaj de validare pentru CategoryId -->
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+
+                    <br />
+                </div>
+                <br />
+                <button class="btn btn-success" type="submit">Add workspace</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
