@@ -438,3 +438,6 @@ C:\Users\DelianDan\OneDrive - unibuc.ro\Desktop\FMI\FMI-Anul 2\Semestrul 1\ASP.N
 C:\Users\DelianDan\OneDrive - unibuc.ro\Desktop\FMI\FMI-Anul 2\Semestrul 1\ASP.Net\Proiect_DAW-DeliANN\Proiect_DAW-DeliANN\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\DelianDan\OneDrive - unibuc.ro\Desktop\FMI\FMI-Anul 2\Semestrul 1\ASP.Net\Proiect_DAW-DeliANN\Proiect_DAW-DeliANN\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\DelianDan\OneDrive - unibuc.ro\Desktop\FMI\FMI-Anul 2\Semestrul 1\ASP.Net\Proiect_DAW-DeliANN\Proiect_DAW-DeliANN\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\DelianDan\OneDrive - unibuc.ro\Desktop\FMI\FMI-Anul 2\Semestrul 1\ASP.Net\Proiect_DAW-DeliANN\Proiect_DAW-DeliANN\bin\Debug\net8.0\AngleSharp.dll
+C:\Users\DelianDan\OneDrive - unibuc.ro\Desktop\FMI\FMI-Anul 2\Semestrul 1\ASP.Net\Proiect_DAW-DeliANN\Proiect_DAW-DeliANN\bin\Debug\net8.0\AngleSharp.Css.dll
+C:\Users\DelianDan\OneDrive - unibuc.ro\Desktop\FMI\FMI-Anul 2\Semestrul 1\ASP.Net\Proiect_DAW-DeliANN\Proiect_DAW-DeliANN\bin\Debug\net8.0\HtmlSanitizer.dll

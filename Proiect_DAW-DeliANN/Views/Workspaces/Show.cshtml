@@ -1,0 +1,78 @@
+﻿@model Proiect_DAW_DeliANN.Models.Workspace
+
+@* Afisarea unui workspace impreuna cu categoria din care face *@
+
+@if (TempData["message"] != null)
+{
+    <div class="alert @ViewBag.Alert p-3 rounded-3 text-center mb-5">
+        @ViewBag.Message
+    </div>
+}
+<br />
+<div class="card">
+
+    <div class="card-body">
+
+        <h3 class="card-title alert-success py-3 px-3 rounded-2">@Model.Name</h3>
+
+        <div class="card-text">@Html.Raw(Model.Description)</div>
+
+        <div class="d-flex justify-content-between flex-row mt-5">
+
+            <div><i class="bi bi-globe"></i> @Model.Category.CategoryName</div>
+
+            @*<div><i class="bi bi-person"></i> @Model.User.UserName</div>*@
+
+            <span class="alert-success">@Model.Date</span>
+
+        </div>
+
+    </div>
+
+    @if ((ViewBag.AfisareButoane == true && Model.UserId == ViewBag.UserCurent)
+    || ViewBag.EsteAdmin == true)
+    {
+        <div class="d-flex flex-row justify-content-between">
+
+            <a class="btn btn-success" asp-controller="Workspaces" asp-action="Edit" asp-route-id="@Model.WorkspaceId">Edit Workspace</a>
+
+            <form method="post" asp-controller="Workspaces" asp-action="Delete" asp-route-id="@Model.WorkspaceId">
+
+                <button class="btn btn-danger" type="submit">Delete workspace</button>
+
+            </form>
+
+
+        </div>
+    }
+
+</div>
+
+<br />
+<br />
+
+@*Afisare useri si channel-uri*@
+<div class="container">
+    <ul>
+        @foreach (var chn in Model.Channels)
+        {
+            <li>@chn.Name</li>
+        }
+    </ul>
+</div>
+@*
+<br/>
+ <div class="container">
+     <ul>
+        @foreach (var usr in Model.ApplicationUserWorkspaces.User)
+         {
+             <li>@usr.Name</li>
+         }
+     </ul>
+ </div>
+*@
+
+
+
+
+

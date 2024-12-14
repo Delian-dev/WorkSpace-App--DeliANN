@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using static Proiect_DAW_DeliANN.Models.ApplicationUserWorkspaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Ganss.Xss;
 
 namespace Proiect_DAW_DeliANN.Controllers
 {
@@ -214,6 +216,230 @@ namespace Proiect_DAW_DeliANN.Controllers
 
             return View();
         }
+
+        //anyone can create a new workspace
+        [Authorize(Roles = "Admin, User, Editor")]
+        public IActionResult New()
+        {
+            ///the GET part => we take the data for the new workspace
+            Workspace workspace = new Workspace();
+            //get all the categories for the dropdown
+            workspace.Categ = GetAllCategories();
+            return View(workspace);
+        }
+        ///Adding the new workspace in the db with the data we input 
+        [HttpPost]
+        [Authorize(Roles = "Admin, User, Editor")]
+        public IActionResult New(Workspace workspace)
+        {
+            //probabil aici va trebui sa si cream un channel default atunci cand da new, dar asta o sa fie deja la gandire de channel
+            var sanitizer = new HtmlSanitizer();
+            workspace.Date = DateTime.Now;
+            ///preluam Id-ul utilizatorului care creeaza workspace-ul
+            workspace.UserId = _userManager.GetUserId(User);
+            if (ModelState.IsValid)
+            {
+                //sanitizing both the name and the description
+                //even though the name is much shorter, you never know what these people write
+                //better safe than sorry
+                workspace.Description = sanitizer.Sanitize(workspace.Description);
+                workspace.Name = sanitizer.Sanitize(workspace.Name);
+                //sa nu uit aici sa pun chestia cu status ca e automata!!!!!!!!!!!
+                ///adding to the db
+                db.Workspaces.Add(workspace);
+                db.SaveChanges();
+                //message to show all went smoothly
+                TempData["message"] = "The new workspace has been added!";
+                TempData["messageType"] = "alert-success";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                //we sent something that didn't fit our regulations
+                //it will send you back to the begining, addding the dropdown once again
+                workspace.Categ = GetAllCategories();
+                return View(workspace);
+            }
+        }
+        //editing the workspace
+        ///category is in a dropdown
+        ///you can edit a workspace only if you are an admin or if the workspace belongs to you
+        ///automatically GET
+        [Authorize(Roles = "Admin, User, Editor")]
+        public IActionResult Edit(int id)
+        {
+            //same here, probabil va putea sa se joace si cu channels tinand cont ca tin de workspace
+            //gen ordinea lor, all that stuff
+            Workspace workspace = db.Workspaces.Include("Channels")
+                                      .Where(wrk => wrk.WorkspaceId == id)
+                                      .First();
+            workspace.Categ = GetAllCategories();
+            if ((workspace.UserId == _userManager.GetUserId(User)) ||
+                User.IsInRole("Admin") || User.IsInRole("Editor"))
+            {
+                return View(workspace);
+            }
+            else
+            {
+
+                TempData["message"] = "You are not allowed to edit a workspace that does not belong to you!";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+        }
+        ///addding the edits to the database
+        [HttpPost]
+        [Authorize(Roles = "Admin, User, Editor")]
+        public IActionResult Edit(int id, Workspace requestWorkspace)
+        {
+            ///same as the new
+            var sanitizer = new HtmlSanitizer();
+            Workspace workspace = db.Workspaces.Find(id);
+            if (ModelState.IsValid)
+            {
+                if ((workspace.UserId == _userManager.GetUserId(User))
+                    || User.IsInRole("Admin") || User.IsInRole("Editor"))
+                {
+                    workspace.Date = DateTime.Now;
+                    workspace.CategoryId = requestWorkspace.CategoryId;
+                    workspace.Name = requestWorkspace.Name;
+                    workspace.Description = requestWorkspace.Description;
+                    TempData["message"] = "Workspace has been edited.";
+                    TempData["messageType"] = "alert-success";
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["message"] = "You are not allowed to edit a workspace that does not belong to you!";
+                    TempData["messageType"] = "alert-danger";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                requestWorkspace.Categ = GetAllCategories();
+                return View(requestWorkspace);
+            }
+        }
+        ///delete the workspace
+        [HttpPost]
+        [Authorize(Roles = "Admin, User, Editor")]
+        public IActionResult Delete(int id)
+        {
+            ///deleting the channels that are associated to the workspace as well
+            Workspace workspace = db.Workspaces.Include("Channels")
+                                                .Where(wrk => wrk.WorkspaceId == id)
+                                                .First();
+            if ((workspace.UserId == _userManager.GetUserId(User))
+                               || User.IsInRole("Admin") || User.IsInRole("Editor"))
+            {
+                db.Workspaces.Remove(workspace);
+                db.SaveChanges();
+                TempData["message"] = "The Workspace has been deleted.";
+                TempData["messageType"] = "alert-success";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["message"] = "You are not allowed to delete a workspace that does not belong to you!";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+        }
+        //this is for the dropdown => it makes a list of all categories
+        [NonAction]
+        public IEnumerable<SelectListItem> GetAllCategories()
+        {
+            // generam o lista de tipul SelectListItem fara elemente
+            var selectList = new List<SelectListItem>();
+
+            // extragem toate categoriile din baza de date
+            var categories = from cat in db.Categories
+                             select cat;
+
+            // iteram prin categorii
+            foreach (var category in categories)
+            {
+                // adaugam in lista elementele necesare pentru dropdown
+                // id-ul categoriei si denumirea acesteia
+                selectList.Add(new SelectListItem
+                {
+                    Value = category.CategoryId.ToString(),
+                    Text = category.CategoryName
+                });
+            }
+
+            return selectList;
+        }
+        //[NonAction]
+        //public IEnumerable<SelectListItem> GetAllUsers()
+        //{
+        //    // generam o lista de tipul SelectListItem fara elemente
+        //    var selectList = new List<SelectListItem>();
+
+        //    // extragem toate categoriile din baza de date
+        //    var users = from cat in db.Users
+        //                     select cat;
+
+        //    // iteram prin categorii
+        //    foreach (var user in users)
+        //    {
+        //        // adaugam in lista elementele necesare pentru dropdown
+        //        // id-ul categoriei si denumirea acesteia
+        //        selectList.Add(new SelectListItem
+        //        {
+        //            Value = user.UserId.ToString(),
+        //            Text = user.CategoryName
+        //        });
+        //    }
+
+        //    return selectList;
+        //}
+        //Afisarea unui Workpace => se alege dupa id din Index
+        //Ce vedem aici? => Butonul de edit si delete, numele si descrierea 
+        //Lista tuturor user-ilor care sunt in workspace si lista tuturor channel-urilor
+        //si cam atat, ca nu planuiesc momentan sa fac cu 
+        [Authorize(Roles = "User,Editor,Admin")]
+        public IActionResult Show(int id)
+        {
+            Console.WriteLine(id);
+            //includem tot ce se poate afisa
+            //momentan, postarile nu, cu toate ca probabil vom edita sa intre pe prima default dupa ce le si avem
+            Workspace workspace = db.Workspaces.Include("Category")
+                                                .Include("ApplicationUserWorkspaces")
+                                                .Include("Channels")
+                                                .Include("User")
+                                                .Where(wrk => wrk.WorkspaceId == id)
+                                                .First();
+            SetAccessRights();
+
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Message = TempData["message"];
+                ViewBag.Alert = TempData["messageType"];
+            }
+
+            return View(workspace);
+        }
+        // Conditiile de afisare pentru butoanele de editare si stergere
+        // butoanele aflate in view-uri
+        //adica editor + admin 100% le vad
+        //dar si user-ul care a creat workspace-ul le vede (restul nu)
+        private void SetAccessRights()
+        {
+            ViewBag.AfisareButoane = false;
+
+            if (User.IsInRole("Editor"))
+            {
+                ViewBag.AfisareButoane = true;
+            }
+
+            ViewBag.UserCurent = _userManager.GetUserId(User);
+
+            ViewBag.EsteAdmin = User.IsInRole("Admin");
+        }
+
 
         [HttpPost]
         [Authorize(Roles ="User")]
