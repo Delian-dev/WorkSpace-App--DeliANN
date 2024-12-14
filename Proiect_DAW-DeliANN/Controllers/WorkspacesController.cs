@@ -119,8 +119,104 @@ namespace Proiect_DAW_DeliANN.Controllers
             return View();
         }
 
+
+        [Authorize(Roles = "User")] //Afisarea tuturor workspace-urilor din care userul face parte sau pentru care este in asteptare
+        public IActionResult Index_personalizat_user()
+        {
+            var userId = _userManager.GetUserId(User); //id-ul userului curent
+
+            var filteredWorkspaces = db.Workspaces.Include("Category") //selectam doar workspace-urile in care exista o legatura in tabelul asociativ intr user si acesta
+                                                  .Where(w => db.ApplicationUserWorkspaces
+                                                            .Any(uw => uw.WorkspaceId == w.WorkspaceId && uw.UserId == userId))
+                                                  .OrderByDescending(w => w.Date);
+
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Message = TempData["message"];
+                ViewBag.Alert = TempData["messageType"];
+            }
+
+            //Mototul de cautare
+            var search = "";
+
+            //Se vor realiza cautari dupa: Numele workspace-ului, Categoria acestuia, dar si dupa descriere
+            if (Convert.ToString(HttpContext.Request.Query["search"]) != null)
+            {
+                search = Convert.ToString(HttpContext.Request.Query["search"]).Trim(); // eliminam spatiile libere 
+
+                //Cautare in workspace (nume,categorie,descriere)
+                List<int> workspaceIds = db.Workspaces.Where(
+                                         w => w.Name.Contains(search)
+                                         || w.Description.Contains(search)
+                                         || w.Category.CategoryName.Contains(search)
+                                         ).Select(a => a.WorkspaceId).ToList();
+
+                //lista workspace-urilor care contin cuvantul cautat (intr-unul din campurile vizate)
+                filteredWorkspaces = db.Workspaces.Where(workspace => workspaceIds.Contains(workspace.WorkspaceId))
+                                          .Include("Category")
+                                          .Where(w => db.ApplicationUserWorkspaces
+                                                            .Any(uw => uw.WorkspaceId == w.WorkspaceId && uw.UserId == userId))
+                                          .OrderByDescending(w => w.Date);
+            }
+
+            ViewBag.SearchString = search;
+
+            //AFISARE PAGINATA
+
+            //Sa zicem 4 workspace-uri pe pagina momentan
+            int _perPage = 4;
+            int totalItems = filteredWorkspaces.Count(); //toate workspace-urile
+
+            // Se preia pagina curenta din View-ul asociat
+            // Numarul paginii este valoarea parametrului page din ruta
+            // /Workspaces/Index?page=valoare
+
+            var currentPage = Convert.ToInt32(HttpContext.Request.Query["page"]);
+
+            // Pentru prima pagina offsetul o sa fie zero
+            // Pentru pagina 2 o sa fie 4 =>  Asadar offsetul este egal cu numarul de workspace-uri care au fost deja afisate pe paginile anterioare
+            var offset = 0;
+
+            // Se calculeaza offsetul in functie de numarul paginii la care suntem
+            if (!currentPage.Equals(0))
+            {
+                offset = (currentPage - 1) * _perPage;
+            }
+
+            //Preluarea workspace-uri corespunzatoare pentru fiecare pagina la care ne aflam in functie de offset
+            var paginatedWorkspaces = filteredWorkspaces.Skip(offset).Take(_perPage);
+
+            //Numarul ultimei pagini
+            ViewBag.lastPage = Math.Ceiling((float)totalItems / (float)_perPage);
+            //Trimitere workspace-uri catre View-ul corespunzator
+            ViewBag.Workspaces = paginatedWorkspaces;
+
+            //DACA AVEM AFISAREA PAGINATA IMPREUNA CU SEARCH
+            if (search != "")
+            {
+                ViewBag.PaginationBaseUrl = "/Workspaces/Index_personalizat_user/?search=" + search + "&page";
+            }
+            else
+            {
+                ViewBag.PaginationBaseUrl = "/Workspaces/Index_personalizat_user/?page";
+            }
+
+            //trimitem in viewbag id-ul userului curent si toate campurile WorkSpaceId si status din tabelul asociativ
+            var userWorkspaceRelations = db.ApplicationUserWorkspaces //daca trimiteam tot tabelul nu mergea in view sa accesez campurile for some reason
+                                         .Where(uw => uw.UserId == userId)
+                                         .Select(uw => new { uw.WorkspaceId, uw.status })
+                                         .ToList();
+
+            ViewBag.UserWorkspaceRelations = userWorkspaceRelations;
+
+            SetUserWorkspaceStatus(); //functie care identifica toate perspectivele posibile pe care un user le poatea avea fata de un workspace
+                                      //pe baza acestei perspective se vor afisa butoane/mesaje corespunzatoare pentru user
+
+            return View();
+        }
+
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles ="User")]
         public IActionResult RequestToJoin(int workspaceId) //functie apelata cand se da request de join la un workspace
         {
             var userId = _userManager.GetUserId(User); //id-ul userului curent
@@ -141,7 +237,29 @@ namespace Proiect_DAW_DeliANN.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "User")]
+        public IActionResult LeaveWorkspace(int workspaceId) //functie apelata cand se da cancel la request 
+        {
+            var userId = _userManager.GetUserId(User);//id-ul userului curent
+
+            //gasim inregistrarea din tabel
+            var relation = db.ApplicationUserWorkspaces
+                           .FirstOrDefault(uw => uw.UserId == userId && uw.WorkspaceId == workspaceId);
+
+            if (relation != null && relation.status)
+            {
+                //stergem inregistrarea
+                db.ApplicationUserWorkspaces.Remove(relation);
+                db.SaveChanges();
+                TempData["message"] = "You Left the Workspace!"; //mesaj pt confirmare
+                TempData["messageType"] = "alert-danger";
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "User")]
         public IActionResult CancelRequest(int workspaceId) //functie apelata cand se da cancel la request 
         {
             var userId = _userManager.GetUserId(User);//id-ul userului curent
