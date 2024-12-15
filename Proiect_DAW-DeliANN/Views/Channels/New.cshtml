@@ -13,6 +13,8 @@
 
                 <div asp-validation-summary="All" class="text-danger"></div>
 
+                <input type="hidden" asp-for="WorkspaceId" /> @*campul ascuns prin care trimitem si WorkspaceId spre model binding*@
+
                 <div class="form-group">
                     <label asp-for="Name" class="form-label">Nume Canal</label>
                     <br />
