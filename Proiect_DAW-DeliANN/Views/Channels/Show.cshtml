@@ -1,0 +1,55 @@
+﻿@model Proiect_DAW_DeliANN.Models.Channel
+<div class="card">
+
+    <div class="card-body">
+
+
+        <div class="d-flex justify-content-between flex-row mt-5">
+
+            <h3 class="card-title alert-success py-3 px-3 rounded-2">@Model.Name</h3>
+
+            <div><i class="bi bi-globe"></i> @Model.Type</div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<br />
+<div class="container mt-2">
+    <div class="row">
+        <!-- Left column for Workspace Channels -->
+        <div class="col-md-4">
+            <div class="bg-light p-3 rounded">
+                <h5>Channels</h5>
+                <ul class="list-unstyled">
+                    @foreach (var chn in ViewBag.WorkspaceChannels)
+                    {
+                        <li class="mb-2">
+                            <a class="btn btn-success" asp-controller="Channels" asp-action="Show" asp-route-id="@chn.ChannelId">@chn.Name</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right column for Posts -->
+        <div class="col-md-8 card">
+            <div>
+                <br />
+                @foreach (var post in Model.Posts)
+                {
+                    <div class="container mb-4 p-3 border rounded">
+                        <p>@post.Content</p>
+                        <small class="text-muted">@post.Date</small>
+                        <strong><i class="bi bi-person"></i> @post.User.UserName</strong>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

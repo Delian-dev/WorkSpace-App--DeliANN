@@ -443,7 +443,6 @@ namespace Proiect_DAW_DeliANN.Controllers
         [Authorize(Roles = "User,Editor,Admin")]
         public IActionResult Show(int id)
         {
-            Console.WriteLine(id);
             //includem tot ce se poate afisa
             //momentan, postarile nu, cu toate ca probabil vom edita sa intre pe prima default dupa ce le si avem
             Workspace workspace = db.Workspaces.Include("Category")

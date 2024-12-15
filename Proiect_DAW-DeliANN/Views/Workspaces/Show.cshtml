@@ -21,7 +21,7 @@
 
             <div><i class="bi bi-globe"></i> @Model.Category.CategoryName</div>
 
-            @*<div><i class="bi bi-person"></i> @Model.User.UserName</div>*@
+            <div><i class="bi bi-person"></i> Created by: @Model.User.UserName</div>
 
             <span class="alert-success">@Model.Date</span>
 
@@ -29,7 +29,7 @@
 
     </div>
 
-    @if(ViewBag.AfisareButoane == true)
+    @if (ViewBag.AfisareButoane == true)
     {
         <div class="d-flex flex-row justify-content-between">
 
@@ -50,25 +50,59 @@
 <br />
 <br />
 
-@*Afisare useri si channel-uri*@
+@*Afisare channel-uri*@
 <div class="container">
+    <div class="d-flex flex-row justify-content-between">
+        <h4 class="card-title alert-success py-3 px-3 rounded-2">Channels:</h4>
+        @if (ViewBag.AfisareButoane == true) @*Doar Admin/Editor/Moderatorii de pe workspace pot adauga canal*@
+        {
+            <a class="btn btn-success" asp-controller="Channels" asp-action="New" asp-route-id="@Model.WorkspaceId">Add a new channel!</a>
+        }
+    </div>
     <ul>
         @foreach (var chn in Model.Channels)
         {
-            <li>@chn.Name</li>
+            <li>
+                <div class="card">
+                    <div class="d-flex flex-row justify-content-between">
+                        <a class="btn btn-success" asp-controller="Channels" asp-action="Show" asp-route-id="@chn.ChannelId">@chn.Name</a>
+                        @if (ViewBag.AfisareButoane == true) @*Doar Admin/Editor/Moderatorii de pe workspace pot edita si sterge canale*@
+                        {
+                            <a class="btn btn-success" asp-controller="Channels" asp-action="Edit" asp-route-id="@chn.ChannelId">Edit Channel</a>
+                            <form method="post" asp-controller="Channels" asp-action="Delete" asp-route-id="@chn.ChannelId">
+
+                                <button class="btn btn-danger" type="submit">Delete Channel</button>
+
+                            </form>
+                        }
+                    </div>
+                </div>
+            </li>
+            <br />
         }
     </ul>
 </div>
+
+
 @*
-<br/>
- <div class="container">
-     <ul>
-        @foreach (var usr in Model.ApplicationUserWorkspaces.User)
-         {
-             <li>@usr.Name</li>
-         }
-     </ul>
- </div>
+<div class="container">
+    <div class="d-flex flex-row justify-content-between">
+    <h4 class="card-title alert-success py-3 px-3 rounded-2">Users in this workspace:</h4>
+    </div>
+    <ul>
+        @foreach (var chn in ViewBag.Users)
+        {
+            <li>
+                <div class="card">
+                <div class="d-flex flex-row justify-content-between">
+                    <li>@chn.FirstName<li>
+                </div>
+                </div>
+            </li>
+            <br/>
+        }
+    </ul>
+</div>
 *@
 
 
