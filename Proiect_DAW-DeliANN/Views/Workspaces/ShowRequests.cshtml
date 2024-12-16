@@ -1,0 +1,34 @@
+﻿@model IEnumerable<dynamic>
+@*DYNAMIC CAST HAHAHAHAA (MA OMOR)
+    (styling-ul e momentan autogenerat are nevoie de modificari) + adaugarea de 2 butoane: unul de accept si unul de reject pt fiecare user
+*@
+
+<h2>Pending Requests</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.UserName</td>
+                    <td>@(user.status == false ? "Pending" : "Active")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No pending requests for this workspace.</p>
+}
+
