@@ -461,6 +461,39 @@ namespace Proiect_DAW_DeliANN.Controllers
 
             return View(workspace);
         }
+
+        //Functia cu ajutorul careia cream view-ul pt moderator unde poate vedea toti userii care au dat request join pentru workspace
+        [Authorize(Roles = "User,Editor,Admin")]
+        public IActionResult ShowRequests(int id) {
+            
+            var userId = _userManager.GetUserId(User); //id-ul userului curent
+            var isAdminorEditor = User.IsInRole("Admin") || User.IsInRole("Editor");
+
+            //verificam daca user-ul care vrea sa stearga este moderator in workspace
+            var isModeratorInWorkspace = db.ApplicationUserWorkspaces
+                                           .Where(u => u.WorkspaceId == id && u.UserId == userId && u.moderator == true)
+                                           .Any();
+
+            if(isAdminorEditor || isModeratorInWorkspace)
+            {
+                //selectam userii care au status = false raportat la acest workspace (=> asteapta sa fie aprobati)
+                var pendingUsers = db.ApplicationUserWorkspaces
+                                   .Where(u => u.WorkspaceId == id && u.status == false)
+                                   .Select(u => new {  //selectam doar campurile pe care le vrem (ca sa nu selectam absolut toate prostiile din User)
+                                       u.WorkspaceId, u.UserId, //aici ar mai avea logic sa selectam si poza user-ului de profil pt cand vom avea acel camp
+                                       u.status, u.User.UserName
+                                       }
+                                   ).ToList().Cast<object>(); // Trebuie castate la ceva de tip object ca sa mearga (altfel am fi facut o clasa separat cu tipul de campuri pe care le selectam)
+                                                              //Ori ar fi trebuit sa selectam tot ce are User in spate si its kinda overkill
+                return View(pendingUsers);
+            }
+
+            else
+            {
+                return Forbid();
+            }
+        }
+
         // Conditiile de afisare pentru butoanele de editare si stergere
         // butoanele aflate in view-uri
         //adica editor + admin 100% le vad
