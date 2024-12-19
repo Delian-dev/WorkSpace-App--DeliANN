@@ -19,10 +19,11 @@ namespace Proiect_DAW_DeliANN.Data
         public DbSet<Post> Posts { get; set; }
         public DbSet<Reaction> Reactions { get; set; }
         public DbSet<ApplicationUserWorkspace> ApplicationUserWorkspaces { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // definirea relatiei many-to-many dintre Article si Bookmark
+            // definirea relatiei many-to-many dintre ApplicationUser si Workspace
 
             base.OnModelCreating(modelBuilder);
 
@@ -31,7 +32,7 @@ namespace Proiect_DAW_DeliANN.Data
                 .HasKey(ab => new { ab.Id, ab.UserId, ab.WorkspaceId });
 
 
-            // definire relatii cu modelele Bookmark si Article (FK)
+            // definire relatii cu modelele Workspaces si ApplicationUser (FK)
 
             modelBuilder.Entity<ApplicationUserWorkspace>()
                 .HasOne(ab => ab.User)
@@ -42,6 +43,13 @@ namespace Proiect_DAW_DeliANN.Data
                 .HasOne(ab => ab.Workspace)
                 .WithMany(ab => ab.ApplicationUserWorkspaces)
                 .HasForeignKey(ab => ab.WorkspaceId);
+
+
+            //definirea relatiei 1-1 dintr user si profil
+            modelBuilder.Entity<ApplicationUser>()
+               .HasOne(a => a.Profile)
+               .WithOne(p => p.User)
+               .HasForeignKey<Profile>(p => p.UserId);
         }
     }
 }

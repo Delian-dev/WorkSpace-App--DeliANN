@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Proiect_DAW_DeliANN.Data;
 using Proiect_DAW_DeliANN.Models;
 
 namespace Proiect_DAW_DeliANN.Areas.Identity.Pages.Account
@@ -126,6 +127,22 @@ namespace Proiect_DAW_DeliANN.Areas.Identity.Pages.Account
                     // PASUL 9: useri si roluri 
                     // adaugarea rolului de User la inregistrare
 
+                    //MODIFICARE - asociere profil cu valori default
+                    var profile = new Profile
+                    {
+                        UserId = user.Id,
+                        ProfileImage = "/images/defaultProfile.png",
+                        Bio = "Welcome to my profile!",
+                        DisplayName = user.UserName,
+                        IsActive = true
+                    };
+
+                    //salvam profilul in baza de date
+                    var dbContext = HttpContext.RequestServices.GetService<ApplicationDbContext>();
+                    dbContext.Profiles.Add(profile);
+                    await dbContext.SaveChangesAsync();
+
+                    //asocierea rolului de User la inregistrare
                     await _userManager.AddToRoleAsync(user, "User");
 
                     var userId = await _userManager.GetUserIdAsync(user);

@@ -440,17 +440,65 @@ namespace Proiect_DAW_DeliANN.Controllers
         //Ce vedem aici? => Butonul de edit si delete, numele si descrierea 
         //Lista tuturor user-ilor care sunt in workspace si lista tuturor channel-urilor
         //si cam atat, ca nu planuiesc momentan sa fac cu 
+        //[Authorize(Roles = "User,Editor,Admin")]
+        //public IActionResult Show(int id)
+        //{
+        //    //includem tot ce se poate afisa
+        //    //momentan, postarile nu, cu toate ca probabil vom edita sa intre pe prima default dupa ce le si avem
+        //    Workspace workspace = db.Workspaces.Include("Category")
+        //                                        .Include("ApplicationUserWorkspaces")
+        //                                        .Include("Channels")
+        //                                        .Include("User")
+        //                                        .Where(wrk => wrk.WorkspaceId == id)
+        //                                        .First();
+        //    SetAccessRights(id); //setam privilegiile pt workspace-ul pe care vrem sa intram
+
+        //    if (TempData.ContainsKey("message"))
+        //    {
+        //        ViewBag.Message = TempData["message"];
+        //        ViewBag.Alert = TempData["messageType"];
+        //    }
+
+        //    return View(workspace);
+        //}
+
         [Authorize(Roles = "User,Editor,Admin")]
         public IActionResult Show(int id)
         {
             //includem tot ce se poate afisa
             //momentan, postarile nu, cu toate ca probabil vom edita sa intre pe prima default dupa ce le si avem
             Workspace workspace = db.Workspaces.Include("Category")
-                                                .Include("ApplicationUserWorkspaces")
                                                 .Include("Channels")
-                                                .Include("User")
+                                                .Include("User") //adica user-ul care a creat workspace-ul
                                                 .Where(wrk => wrk.WorkspaceId == id)
                                                 .First();
+
+            if (workspace == null) {
+                return NotFound();
+            }
+
+            var users = db.ApplicationUserWorkspaces //selectam toti userii normali din workspace separat
+                        .Where(u => u.WorkspaceId == id && u.status==true && u.moderator==false)
+                        .Select( u => new
+                        {
+                            u.UserId,u.WorkspaceId,
+                            ProfileImage = u.User.Profile.ProfileImage,
+                            DisplayName = u.User.Profile.DisplayName
+                        }
+                        ).ToList();
+
+            Console.WriteLine($"Users retrieved for Workspace {id}: {string.Join(", ", users.Select(u => u.UserId))}");
+            ViewBag.Users = users;
+
+            var moderators = db.ApplicationUserWorkspaces //selectam toti moderatorii
+                    .Where(uw => uw.WorkspaceId == id && uw.moderator==true)
+                    .Select(uw => new {
+                        uw.UserId,uw.WorkspaceId,
+                        ProfileImage = uw.User.Profile.ProfileImage,
+                        DisplayName = uw.User.Profile.DisplayName
+                    }).ToList();
+            ViewBag.Moderators = moderators;
+
             SetAccessRights(id); //setam privilegiile pt workspace-ul pe care vrem sa intram
 
             if (TempData.ContainsKey("message"))
@@ -481,7 +529,12 @@ namespace Proiect_DAW_DeliANN.Controllers
                                    .Where(u => u.WorkspaceId == id && u.status == false)
                                    .Select(u => new {  //selectam doar campurile pe care le vrem (ca sa nu selectam absolut toate prostiile din User)
                                        u.WorkspaceId, u.UserId, //aici ar mai avea logic sa selectam si poza user-ului de profil pt cand vom avea acel camp
-                                       u.status, u.User.UserName
+                                       u.status,
+
+                                       //selectam imaginea de profil si numele userului din clasa Profile
+                                       //si le dam aliasuri mai da-le dracu ca sunt prea lungi
+                                       ProfileImage = u.User.Profile.ProfileImage, 
+                                       DisplayName = u.User.Profile.DisplayName
                                        }
                                    ).ToList().Cast<object>(); // Trebuie castate la ceva de tip object ca sa mearga (altfel am fi facut o clasa separat cu tipul de campuri pe care le selectam)
                                                               //Ori ar fi trebuit sa selectam tot ce are User in spate si its kinda overkill
@@ -516,6 +569,7 @@ namespace Proiect_DAW_DeliANN.Controllers
             ViewBag.UserCurent = _userManager.GetUserId(User);
 
             ViewBag.EsteAdmin = User.IsInRole("Admin");
+            ViewBag.EsteEditor = User.IsInRole("Editor");
         }
 
 
@@ -583,6 +637,148 @@ namespace Proiect_DAW_DeliANN.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+
+        //FUNCTIILE DE ACCEPT/REJECT apelate de catre moderator
+        [HttpPost]
+        [Authorize(Roles = "Admin,Editor,User")]
+        public IActionResult AcceptRequest(int WorkspaceId, string UserId) {
+            
+            bool isModerator = checkMod(WorkspaceId, UserId);
+
+            if (!isModerator && !User.IsInRole("Admin") && !User.IsInRole("Editor"))
+            {
+                return Forbid();
+            }
+
+
+            //localizam linia pe care vrem sa o modificam in tabelul asociativ
+            var userWorkspace = db.ApplicationUserWorkspaces
+                                .FirstOrDefault(uw => uw.WorkspaceId == WorkspaceId && uw.UserId == UserId && uw.status==false); //nu prea are rost sa verificm si statusul but oh well
+
+            if (userWorkspace != null)
+            {
+                userWorkspace.status = true;
+                userWorkspace.moderator = false;
+                db.SaveChanges();
+                Console.WriteLine($"User {UserId} status updated to true for Workspace {WorkspaceId}");
+            }
+            //return RedirectToAction("Show/"+WorkspaceId); nu merge asa probabil din cauza denumirii param
+            return RedirectToAction("Show", new { id = WorkspaceId });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin,Editor,User")]
+        public IActionResult RejectRequest(int WorkspaceId, string UserId)
+        {
+            bool isModerator = checkMod(WorkspaceId, UserId);
+
+            if (!isModerator && !User.IsInRole("Admin") && !User.IsInRole("Editor"))
+            {
+                return Forbid();
+            }
+
+            //localizam linia pe care vrem sa o stergem din tabelul asociativ
+            var userWorkspace = db.ApplicationUserWorkspaces
+                                .FirstOrDefault(uw => uw.WorkspaceId == WorkspaceId && uw.UserId == UserId);
+            if (userWorkspace != null) { 
+                db.ApplicationUserWorkspaces.Remove(userWorkspace); //am sters cererea
+                db.SaveChanges();
+            }
+            return RedirectToAction("Show", new {id=WorkspaceId});
+        }
+
+
+        //FUNCTIILE PENTRU MODERATOR DIN INTERIORUL WORKSPACE-ULUI (promote to admin / demote to user / remove from workspace)
+        //sa mor de n am scris la workspace-ul asta cat la szmeteanca la proiect
+        //1. Functia de promote to Moderator
+        [HttpPost]
+        [Authorize(Roles = "Admin,Editor,User")]
+        public IActionResult PromoteToMod(int WorkspaceId, string UserId)
+        {
+            bool isModerator = checkMod(WorkspaceId, UserId);
+
+            if (!isModerator && !User.IsInRole("Admin") && !User.IsInRole("Editor"))
+            {
+                return Forbid();
+            }
+
+            var userWorkspace = db.ApplicationUserWorkspaces
+                               .FirstOrDefault(uw => uw.WorkspaceId == WorkspaceId && uw.UserId == UserId && uw.moderator==false); //nu e necesara partea cu moderator=false 
+
+            if (userWorkspace != null) {
+                userWorkspace.moderator = true; //il setam ca fiind moderator in workspace
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Show", new { id = WorkspaceId });
+        }
+
+        //2.Functia de demote de la moderator la user
+        [HttpPost]
+        [Authorize(Roles = "Admin,Editor,User")]
+        public IActionResult DemoteToUser(int WorkspaceId, string UserId)
+        {
+            bool isModerator = checkMod(WorkspaceId, UserId);
+
+            if (!isModerator && !User.IsInRole("Admin") && !User.IsInRole("Editor"))
+            {
+                return Forbid();
+            }
+
+            var userWorkspace = db.ApplicationUserWorkspaces
+                               .FirstOrDefault(uw => uw.WorkspaceId == WorkspaceId && uw.UserId == UserId && uw.moderator == true); //nu e necesara partea cu moderator=true 
+
+            if (userWorkspace != null)
+            {
+                userWorkspace.moderator = false; //il setam ca fiind simplu user in workspace
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Show", new { id = WorkspaceId });
+        }
+
+        //3.Functia de remove din workspace
+        [HttpPost]
+        [Authorize(Roles = "Admin,Editor,User")]
+        public IActionResult RemoveMember(int WorkspaceId, string UserId)
+        {
+            bool isModerator = checkMod(WorkspaceId, UserId);
+
+            if (!isModerator && !User.IsInRole("Admin") && !User.IsInRole("Editor"))
+            {
+                return Forbid();
+            }
+
+            var userWorkspace = db.ApplicationUserWorkspaces
+                               .FirstOrDefault(uw => uw.WorkspaceId == WorkspaceId && uw.UserId == UserId && uw.status==true); //nu e necesara partea cu status=true 
+
+            if (userWorkspace != null)
+            {
+                db.ApplicationUserWorkspaces.Remove(userWorkspace); //l-am sters complet din tabel => trebuie iar sa dea request pentru a intra in workspace
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Show", new { id = WorkspaceId });
+        }
+
+        //functie sa verific ca un user e moderator in workspace (ca sa nu mai am aceeasi prostie in 10 locuri)
+        private bool checkMod(int WorkspaceId, string UserId)
+        {
+            //verificam intai ca intr-adevar cel ce face actiunea e moderator (pt useri)
+            var currentUserId = _userManager.GetUserId(User);
+
+            // verificam ca userul sa fie moderator
+            var isModeratorInWorkspace = db.ApplicationUserWorkspaces
+                                           .Any(uw => uw.WorkspaceId == WorkspaceId
+                                                   && uw.UserId == currentUserId
+                                                   && uw.moderator == true);
+            if (isModeratorInWorkspace)
+            {
+                return true;
+            }
+            return false;
         }
 
         private void SetUserWorkspaceStatus() 
