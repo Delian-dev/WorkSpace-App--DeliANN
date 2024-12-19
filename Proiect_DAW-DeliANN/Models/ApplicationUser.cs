@@ -18,6 +18,8 @@ namespace Proiect_DAW_DeliANN.Models
         // un user poate sa creeze mai multe postari
         public virtual ICollection<Post>? Posts { get; set; }
 
+        public virtual Profile? Profile { get; set; } //un user are un profil
+
         // atribute suplimentare adaugate pentru user
         public string? FirstName { get; set; }
 

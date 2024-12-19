@@ -1,7 +1,4 @@
 ﻿@model IEnumerable<dynamic>
-@*DYNAMIC CAST HAHAHAHAA (MA OMOR)
-    (styling-ul e momentan autogenerat are nevoie de modificari) + adaugarea de 2 butoane: unul de accept si unul de reject pt fiecare user
-*@
 
 <h2>Pending Requests</h2>
 
@@ -10,18 +7,33 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>User ID</th>
-                <th>Username</th>
+                <th>Profile Photo</th>
+                <th>Display Name</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var user in Model)
             {
                 <tr>
-                    <td>@user.UserId</td>
-                    <td>@user.UserName</td>
+                    <td>
+                        <img src="@user.ProfileImage" alt="Profile Photo" style="width:50px; height:50px; border-radius:50%;" />
+                    </td>
+                    <td>@user.DisplayName</td>
                     <td>@(user.status == false ? "Pending" : "Active")</td>
+                    <td>
+                        <form asp-controller="Workspaces" asp-action="AcceptRequest" method="post">
+                            <input type="hidden" name="WorkspaceId" value="@user.WorkspaceId" />
+                            <input type="hidden" name="UserId" value="@user.UserId" />
+                            <button class="btn btn-success" type="submit">Accept</button> @*Mergem spre functia din controller care face campul de status=true (este acceptat)*@
+                        </form>
+                        <form asp-controller="Workspaces" asp-action="RejectRequest" method="post">
+                            <input type="hidden" name="WorkspaceId" value="@user.WorkspaceId" />
+                            <input type="hidden" name="UserId" value="@user.UserId" />
+                            <button class="btn btn-danger" type="submit">Reject</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace (va trebuie sa dea request din nou)*@
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -31,4 +43,3 @@ else
 {
     <p>No pending requests for this workspace.</p>
 }
-

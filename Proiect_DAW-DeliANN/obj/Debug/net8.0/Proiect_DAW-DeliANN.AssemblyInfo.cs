@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Proiect_DAW-DeliANN")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ad42072a02fd014415f20c0882e206dc4bf84959")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3d71a51f81e2c244e3fed0931497a464c8b419c4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Proiect_DAW-DeliANN")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Proiect_DAW-DeliANN")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
