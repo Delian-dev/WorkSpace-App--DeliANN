@@ -1,9 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Identity
-
+@using Microsoft.EntityFrameworkCore; 
+@*EntityFrameWorkCore pt a putea folosi .Include si restul de metode linq*@
 <!-- PASUL 7: useri si roluri-->
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@inject Proiect_DAW_DeliANN.Data.ApplicationDbContext db
+@*injectam db-ul nostru pt a putea face rost de profil*@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
@@ -11,7 +14,10 @@
      string userId = UserManager.GetUserId(User); // Get current user ID
 
      // Fetch the display name for the logged-in user
-     var currentUser = await UserManager.GetUserAsync(User);
+        var currentUser = await db.ApplicationUsers
+        .Include(u => u.Profile) // Ensure Profile is loaded
+        .FirstOrDefaultAsync(u => u.Id == userId);
+
      if (currentUser?.Profile?.DisplayName != null)
      {
          displayName = currentUser.Profile.DisplayName;

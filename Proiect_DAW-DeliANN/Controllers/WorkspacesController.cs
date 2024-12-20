@@ -470,6 +470,7 @@ namespace Proiect_DAW_DeliANN.Controllers
             Workspace workspace = db.Workspaces.Include("Category")
                                                 .Include("Channels")
                                                 .Include("User") //adica user-ul care a creat workspace-ul
+                                                .Include("User.Profile") //preluam si profilul creatorului ca sa afisam DisplayName cand aratam cine a creat workspace-ul
                                                 .Where(wrk => wrk.WorkspaceId == id)
                                                 .First();
 

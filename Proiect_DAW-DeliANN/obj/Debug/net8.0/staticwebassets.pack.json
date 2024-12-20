@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\images\\defaultProfile.png"
     },
     {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\zilla.png",
+      "PackagePath": "staticwebassets\\images\\zilla.png"
+    },
+    {
       "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VsS5RkU6peCjOYe48mewnkNbZdDFsrTkp4xaXor1/1g=",
+  "Hash": "5FJXRqz2rm/DZUfx5V631TVhVKD+8LE98lAF6e22aUM=",
   "Source": "Proiect_DAW-DeliANN",
   "BasePath": "_content/Proiect_DAW-DeliANN",
   "Mode": "Default",
@@ -1250,6 +1250,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\defaultProfile.png"
+    },
+    {
+      "Identity": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\zilla.png",
+      "SourceId": "Proiect_DAW-DeliANN",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\",
+      "BasePath": "_content/Proiect_DAW-DeliANN",
+      "RelativePath": "images/zilla.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\zilla.png"
     },
     {
       "Identity": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\js\\site.js",
