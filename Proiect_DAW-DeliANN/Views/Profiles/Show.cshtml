@@ -1,6 +1,28 @@
-﻿namespace Proiect_DAW_DeliANN.Views.Profiles
+﻿@model Proiect_DAW_DeliANN.Models.Profile
+
+<h2>Profile Details</h2>
+<br />
+
+@if (ViewBag.Message != null)
 {
-    public class Show
-    {
-    }
+    <div class="alert-success p-3 rounded-3 text-center mb-5 @ViewBag.Alert">
+        @ViewBag.Message
+    </div>
 }
+
+<br />
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Displayed name: @Model.DisplayName</h4>
+        <p class="card-text">Email: @Model.User.Email</p>
+        <img src="@Model.ProfileImage" alt="Profile Image" class="img-thumbnail" style="width:150px; height:150px;" />
+        <p class="card-text mt-3"><strong>Bio:</strong> @Model.Bio</p>
+        <p class="card-text"><strong>Status:</strong> @ViewBag.Status</p>
+
+        @if(ViewBag.EsteAdmin || ViewBag.EsteEditor || ViewBag.OwnProfile)
+        {
+            <a class="btn btn-success" asp-controller="Profiles" asp-action="Edit" asp-route-id="@Model.ProfileId">Edit Profile</a>
+        }
+    </div>
+</div>

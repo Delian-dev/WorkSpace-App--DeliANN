@@ -1,5 +1,65 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Proiect_DAW_DeliANN.Models.Profile
+
+<h2 class="text-center mt-5">Edit Profile</h2>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+
+            <form enctype="multipart/form-data"  method="post" asp-action="Edit" asp-controller="Profiles" asp-route-id="@Model.ProfileId"> @*tag-ul de enctype pt fisiere media*@
+                <!--
+                    Metoda 2 prin care se trimite id-ul catre Controller
+                <input type="hidden" asp-for="Id" />  -->
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <input type="hidden" asp-for="UserId" /> @*campul ascuns pentru completarea campului UserId*@
+
+                <div class="form-group">
+                    <label asp-for="DisplayName" class="form-label">Displayed Name</label>
+                    <br />
+                    <input asp-for="DisplayName" class="form-control" />
+
+                    <span asp-validation-for="DisplayName" class="text-danger"></span>
+
+                    <br /><br />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Bio" class="form-label">Edit Bio:</label>
+                    <br />
+                    <textarea asp-for="Bio" class="form-control summernote"></textarea>
+
+                    <span asp-validation-for="Bio" class="text-danger"></span>
+
+                    <br /><br />
+                </div>
+                
+                <div class="form-group"> @*Select pentru status*@
+                    <label asp-for="IsActive" class="form-label">Profile Visibility</label>
+                    <select asp-for="IsActive" class="form-control">
+                        <option value="">Hidden</option> <!-- null -->
+                        <option value="true">Active</option> @*facem campul true*@
+                        <option value="false">Inactive</option> @*facem campul false*@
+                    </select>
+                    <span asp-validation-for="IsActive" class="text-danger"></span>
+                    
+                    <br /><br />
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="ProfileImage">Modifica Imaginea de Profile</label>
+                    <input asp-for="ProfileImage" class="form-control" type="file" name="Image" />
+                    <span asp-validation-for="ProfileImage" class="text-danger"></span>
+
+                    <br /><br />
+                </div>
+
+                <button class="btn btn-sm btn-success" type="submit">Save the Changes</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
