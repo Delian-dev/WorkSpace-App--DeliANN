@@ -5,6 +5,28 @@
     ViewBag.Title = "Editare categorie";
 }
 
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/FormStylings.css" rel="stylesheet" />
+
 <h2>@ViewBag.Title</h2>
 
 
@@ -13,13 +35,13 @@
     <div class="form-group">
         <label asp-for="CategoryName" class="form-label">Denumire categorie</label>
         <br />
-        <input asp-for="CategoryName" class="form-control" />
+        <input asp-for="CategoryName" class="form-control custom-input" />
         <span asp-validation-for="CategoryName" class="text-danger"></span>
     </div>
 
     <br />
 
-    <button class="btn btn-success" type="submit">Modifică categoria</button>
+    <button class="btn btn-success custom-btn" type="submit">Modifică categoria</button>
 
 </form>
 

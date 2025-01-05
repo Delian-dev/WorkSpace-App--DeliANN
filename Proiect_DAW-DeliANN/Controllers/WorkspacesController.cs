@@ -478,6 +478,19 @@ namespace Proiect_DAW_DeliANN.Controllers
                 return NotFound();
             }
 
+            //verificare ca userul face parte din workspace
+            string currentUserId = _userManager.GetUserId(User);
+
+            bool isMember = db.ApplicationUserWorkspaces
+                              .Any(uw => uw.UserId == currentUserId && uw.WorkspaceId == id && uw.status == true);
+
+            if (!isMember && !User.IsInRole("Admin") && !User.IsInRole("Editor")) //daca nu este in workspace/admin/editor - nu are voie sa intre
+            {
+                TempData["message"] = "You are not allowed to enter this workspace!";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+
             var users = db.ApplicationUserWorkspaces //selectam toti userii normali din workspace separat
                         .Where(u => u.WorkspaceId == id && u.status==true && u.moderator==false)
                         .Select( u => new

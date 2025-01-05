@@ -1,9 +1,29 @@
 ﻿@model Proiect_DAW_DeliANN.Models.Workspace
 
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/FormStylings.css" rel="stylesheet" />
+
 
 <h2 class="text-center mt-5">Add a new workspace</h2>
-
-<br />
 
 <div class="container mt-5">
     <div class="row">
@@ -16,7 +36,7 @@
                 <div class="form-group">
                     <label asp-for="Name" class="form-label">Name your workspace:</label>
                     <br />
-                    <input asp-for="Name" class="form-control" />
+                    <input asp-for="Name" class="form-control custom-input" />
 
                     <!-- Mesaj de validare pentru workspace -->
                     <span asp-validation-for="Name" class="text-danger"></span>
@@ -27,7 +47,7 @@
                 <div class="form-group">
                     <label asp-for="Description" class="form-label">Give a description to your workspace:</label>
                     <br />
-                    <textarea asp-for="Description" class="form-control summernote"></textarea>
+                    <textarea asp-for="Description" class="form-control summernote custom-textarea"></textarea>
 
                     <!-- Mesaj de validare pentru descrierea workspace-ului -->
                     <span asp-validation-for="Description" class="text-danger"></span>
@@ -38,7 +58,7 @@
                 <div class="form-group">
                     <label for="CategoryId">Select the category</label>
                     <br />
-                    <select asp-for="CategoryId" asp-items="Model.Categ" class="form-control">
+                    <select asp-for="CategoryId" asp-items="Model.Categ" class="form-control custom-select">
                         <option value="">Selectati categoria</option>
                     </select>
 
@@ -48,7 +68,7 @@
                     <br />
                 </div>
                 <br />
-                <button class="btn btn-success" type="submit">Add workspace</button>
+                <button class="btn btn-success custom-btn" type="submit">Add workspace</button>
 
             </form>
         </div>

@@ -1,5 +1,27 @@
 ﻿@model Proiect_DAW_DeliANN.Models.Profile
 
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/FormStylings.css" rel="stylesheet" />
+
 <h2 class="text-center mt-5">Edit Profile</h2>
 
 <div class="container mt-5">
@@ -18,7 +40,7 @@
                 <div class="form-group">
                     <label asp-for="DisplayName" class="form-label">Displayed Name</label>
                     <br />
-                    <input asp-for="DisplayName" class="form-control" />
+                    <input asp-for="DisplayName" class="form-control custom-input" />
 
                     <span asp-validation-for="DisplayName" class="text-danger"></span>
 
@@ -28,14 +50,14 @@
                 <div class="form-group">
                     <label asp-for="Bio" class="form-label">Edit Bio:</label>
                     <br />
-                    <textarea asp-for="Bio" class="form-control summernote"></textarea>
+                    <textarea asp-for="Bio" class="form-control summernote custom-textarea"></textarea>
 
                     <span asp-validation-for="Bio" class="text-danger"></span>
 
                     <br /><br />
                 </div>
                 
-                <div class="form-group"> @*Select pentru status*@
+                <div class="form-group custom-select"> @*Select pentru status*@
                     <label asp-for="IsActive" class="form-label">Profile Visibility</label>
                     <select asp-for="IsActive" class="form-control">
                         <option value="">Hidden</option> <!-- null -->
@@ -48,15 +70,15 @@
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-group custom-select">
                     <label asp-for="ProfileImage">Modifica Imaginea de Profile</label>
-                    <input asp-for="ProfileImage" class="form-control" type="file" name="Image" />
+                    <input asp-for="ProfileImage" class="form-control" type="file" name="Image" /> @*name trebuie sa fie la fel cu numele parametrului pe care il trimitem in functia de edit Post (pt model binding)*@
                     <span asp-validation-for="ProfileImage" class="text-danger"></span>
 
                     <br /><br />
                 </div>
 
-                <button class="btn btn-sm btn-success" type="submit">Save the Changes</button>
+                <button class="btn btn-sm btn-success custom-btn" type="submit">Save the Changes</button>
 
             </form>
         </div>

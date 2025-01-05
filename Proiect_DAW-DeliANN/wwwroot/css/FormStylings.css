@@ -1,0 +1,73 @@
+﻿/* Custom form inputs */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/*form {
+    background-color: var(--primary-color);
+    padding: 10px; 
+    border-radius: 8px; 
+}*/
+.custom-input {
+    border-color: var(--dark-accent-color);
+    background-color: #f9f9f9;
+}
+
+    .custom-input:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 5px var( --accent-color);
+    }
+
+.custom-textarea {
+    border-color: var(--dark-accent-color);
+    background-color: #f9f9f9;
+    min-height: 150px;
+}
+
+    .custom-textarea:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 5px var(--accent-color);
+    }
+
+.custom-select {
+    border-color: var(--dark-accent-color);
+    background-color: #f9f9f9;
+}
+
+    .custom-select:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 5px var(--accent-color);
+    }
+
+/* Button styling */
+.custom-btn {
+    background-color: var(--dark-accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: "Inter", serif;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+    .custom-btn:hover {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+/* Text and heading styles */
+h2 {
+    /*color: var(--dark-accent-color);*/
+    font-family: "Inter", serif;
+    font-weight: 600;
+}
+
+label {
+    font-family: "Inter", serif;
+    font-size: 16px;
+}
+
+.form-group span.text-danger {
+    color: var(--deep-dark-color);
+}

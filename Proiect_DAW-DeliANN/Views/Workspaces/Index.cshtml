@@ -43,7 +43,9 @@
 
         <div class="card-body">
 
-            <h3 class="card-title alert-success py-3 px-3 rounded-2">@workspace.Name</h3>
+            <a asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId" class="text-decoration-none">
+                <h3 class="card-title alert-success py-3 px-3 rounded-2">@workspace.Name</h3>
+            </a>
 
             <div class="card-text">@Html.Raw(workspace.Description)</div>
 
@@ -103,7 +105,7 @@
     <br />
 }
 
-@* Afisarea paginata a articolelor *@
+@* Afisarea paginata a workspace-urilor *@
 
 <div>
     <nav aria-label="Page navigation example">

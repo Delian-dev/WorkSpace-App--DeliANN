@@ -1,9 +1,28 @@
 ﻿@model Proiect_DAW_DeliANN.Models.Channel
 
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/FormStylings.css" rel="stylesheet" />
 
 <h2 class="text-center mt-5">Editare Canal</h2>
-
-<br />
 
 <div class="container mt-5">
     <div class="row">
@@ -18,7 +37,7 @@
                 <div class="form-group">
                     <label asp-for="Name" class="form-label">Nume Canal</label>
                     <br />
-                    <input asp-for="Name" class="form-control" />
+                    <input asp-for="Name" class="form-control custom-input" />
 
                     <!-- Mesaj de validare pentru nume canal -->
                     <span asp-validation-for="Name" class="text-danger"></span>
@@ -29,7 +48,7 @@
                 <div class="form-group">
                     <label asp-for="Type" class="form-label">Tip Canal</label>
                     <br />
-                    <textarea asp-for="Type" class="form-control summernote"></textarea>
+                    <textarea asp-for="Type" class="form-control summernote custom-textarea"></textarea>
 
                     <!-- Mesaj de validare pentru tip canal -->
                     <span asp-validation-for="Type" class="text-danger"></span>
@@ -38,7 +57,7 @@
                 </div>
 
                 <br />
-                <button class="btn btn-success" type="submit">Salveaza Modificarile</button>
+                <button class="btn btn-success custom-btn" type="submit">Salveaza Modificarile</button>
 
             </form>
         </div>
