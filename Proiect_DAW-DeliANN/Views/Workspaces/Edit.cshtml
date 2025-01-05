@@ -1,8 +1,29 @@
 ﻿@model Proiect_DAW_DeliANN.Models.Workspace
 
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/FormStylings.css" rel="stylesheet" />
+
 <h2 class="text-center mt-5">Edit Workspace</h2>
 
-<br />
 
 <div class="container mt-5">
     <div class="row">
@@ -18,7 +39,7 @@
                 <div class="form-group">
                     <label asp-for="Name" class="form-label">Workspace Name</label>
                     <br />
-                    <input asp-for="Name" class="form-control" />
+                    <input asp-for="Name" class="form-control custom-input" />
 
                     <span asp-validation-for="Name" class="text-danger"></span>
 
@@ -28,7 +49,7 @@
                 <div class="form-group">
                     <label asp-for="Description" class="form-label">Description of Workspace</label>
                     <br />
-                    <textarea asp-for="Description" class="form-control summernote"></textarea>
+                    <textarea asp-for="Description" class="form-control summernote  custom-textarea"></textarea>
 
                     <span asp-validation-for="Description" class="text-danger"></span>
 
@@ -38,7 +59,7 @@
                 <div class="form-group">
                     <label for="CategoryId">Select the category</label>
                     <br />
-                    <select asp-for="CategoryId" asp-items="Model.Categ" class="form-control">
+                    <select asp-for="CategoryId" asp-items="Model.Categ" class="form-control custom-select">
                         <option value="">Selectati categoria</option>
                     </select>
 
@@ -47,7 +68,7 @@
                     <br />
                 </div>
 
-                <button class="btn btn-sm btn-success" type="submit">Edit workplace</button>
+                <button class="btn btn-sm btn-success custom-btn" type="submit">Edit workplace</button>
 
             </form>
         </div>

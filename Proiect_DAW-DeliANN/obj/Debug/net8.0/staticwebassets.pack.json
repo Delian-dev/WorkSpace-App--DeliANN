@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\Proiect_DAW-DeliANN.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\FormStylings.css",
+      "PackagePath": "staticwebassets\\css\\FormStylings.css"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\WorkspaceShow.css",
+      "PackagePath": "staticwebassets\\css\\WorkspaceShow.css"
+    },
+    {
       "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

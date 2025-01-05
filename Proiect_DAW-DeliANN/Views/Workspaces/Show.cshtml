@@ -1,6 +1,26 @@
 ﻿@model Proiect_DAW_DeliANN.Models.Workspace
 
-@* Afisarea unui workspace impreuna cu categoria din care face *@
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/WorkspaceShow.css" rel="stylesheet" />
 
 @if (TempData["message"] != null)
 {
@@ -9,169 +29,196 @@
     </div>
 }
 <br />
-<div class="card">
+<div class="container">
+    <div class="workspace-info-card card mb-4">
+        <div class="card-body">
 
-    <div class="card-body">
+            <h4 class="section-title-workspace text-center mb-3">@Model.Name</h4>
 
-        <h3 class="card-title alert-success py-3 px-3 rounded-2">@Model.Name</h3>
+            <div class="workspace-info-container mt-5">
+                <div class="left-section card-text text-start">@Html.Raw(Model.Description)</div>
 
-        <div class="card-text">@Html.Raw(Model.Description)</div>
+                <div class="right-section">
 
-        <div class="d-flex justify-content-between flex-row mt-5">
+                    <div><i class="bi bi-globe"></i> @Model.Category.CategoryName</div>
 
-            <div><i class="bi bi-globe"></i> @Model.Category.CategoryName</div>
+                    <div><i class="bi bi-person"></i> Created by: @Model.User.Profile.DisplayName</div>
 
-            <div><i class="bi bi-person"></i> Created by: @Model.User.Profile.DisplayName</div>
+                    <span class="alert-success">@Model.Date</span>
 
-            <span class="alert-success">@Model.Date</span>
+                </div>
+            </div>
 
         </div>
 
+        @if (ViewBag.AfisareButoane == true)
+        {
+            <div class="d-flex justify-content-between mt-3">
+
+                <a class="btn btn-success" asp-controller="Workspaces" asp-action="Edit" asp-route-id="@Model.WorkspaceId">Edit Workspace</a>
+
+                <form method="post" asp-controller="Workspaces" asp-action="Delete" asp-route-id="@Model.WorkspaceId">
+
+                    <button class="btn btn-danger" type="submit">Delete workspace</button>
+
+                </form>
+
+                <a class="btn btn-success" asp-controller="Workspaces" asp-action="ShowRequests" asp-route-id="@Model.WorkspaceId">See Requests</a>
+
+            </div>
+        }
     </div>
-
-    @if (ViewBag.AfisareButoane == true)
-    {
-        <div class="d-flex flex-row justify-content-between">
-
-            <a class="btn btn-success" asp-controller="Workspaces" asp-action="Edit" asp-route-id="@Model.WorkspaceId">Edit Workspace</a>
-
-            <form method="post" asp-controller="Workspaces" asp-action="Delete" asp-route-id="@Model.WorkspaceId">
-
-                <button class="btn btn-danger" type="submit">Delete workspace</button>
-
-            </form>
-
-            <a class="btn btn-success" asp-controller="Workspaces" asp-action="ShowRequests" asp-route-id="@Model.WorkspaceId">See Requests</a>
-
-        </div>
-    }
 
 </div>
 
 <br />
 <br />
 
-@*Afisare channel-uri*@
 <div class="container">
     <div class="d-flex flex-row justify-content-between">
-        <h4 class="card-title alert-success py-3 px-3 rounded-2">Channels:</h4>
-        @if (ViewBag.AfisareButoane == true) @*Doar Admin/Editor/Moderatorii de pe workspace pot adauga canal*@
-        {
-            <a class="btn btn-success" asp-controller="Channels" asp-action="New" asp-route-id="@Model.WorkspaceId">Add a new channel!</a>
-        }
-    </div>
-    <ul>
-        @foreach (var chn in Model.Channels)
-        {
-            <li>
-                <div class="card">
-                    <div class="d-flex flex-row justify-content-between">
-                        <a class="btn btn-success" asp-controller="Channels" asp-action="Show" asp-route-id="@chn.ChannelId">@chn.Name</a>
-                        @if (ViewBag.AfisareButoane == true) @*Doar Admin/Editor/Moderatorii de pe workspace pot edita si sterge canale*@
+        @*Afisare channel-uri*@
+        <div class="w-50 me-3">
+            <h4 class="section-title text-center">Channel List:</h4>
+            <div class="channel-list-container">
+                <ul class="list-unstyled">
+                    @foreach (var chn in Model.Channels)
+                    {
+                        <li>
+                            <div class="card mb-3">
+                                <div class="d-flex align-items-center justify-content-between p-2">
+                                    <a class="btn btn-success text-truncate channel-name" asp-controller="Channels" asp-action="Show" asp-route-id="@chn.ChannelId">@chn.Name</a>
+                                    @if (ViewBag.AfisareButoane == true) @*Doar Admin/Editor/Moderatorii de pe workspace pot edita si sterge canale*@
+                                    {
+                                        <div class="channel-buttons">
+                                            <a class="btn btn-success me-2" asp-controller="Channels" asp-action="Edit" asp-route-id="@chn.ChannelId"><i class="bi bi-pencil-square"></i> Edit </a>
+                                            <form method="post" asp-controller="Channels" asp-action="Delete" asp-route-id="@chn.ChannelId">
+
+                                                <button class="btn btn-danger" type="submit"><i class="bi bi-trash-fill"></i> Delete </button>
+
+                                            </form>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <br />
+                    }
+                </ul>
+            </div>
+        </div>
+
+        @*Sectiunea de useri workspace*@
+        <div class="w-50">
+            @*Afisare lista moderatori*@
+            <h4 class="section-title text-center">Moderators in this Workspace:</h4>
+
+            <div class="moderators-container">
+                @if (ViewBag.Moderators != null && ViewBag.Moderators.Count > 0)
+                {
+                    <ul class="list-group">
+                        @foreach (var mod in ViewBag.Moderators)
                         {
-                            <a class="btn btn-success" asp-controller="Channels" asp-action="Edit" asp-route-id="@chn.ChannelId">Edit Channel</a>
-                            <form method="post" asp-controller="Channels" asp-action="Delete" asp-route-id="@chn.ChannelId">
+                            <li class="list-group-item d-flex align-items-center">
+                                @*orice user poate vizualiza ceilalti useri*@
+                                <a asp-controller="Profiles" asp-action="Show" asp-route-id="@mod.UserId" class="d-flex align-items-center text-decoration-none">
+                                    <img src="@mod.ProfileImage" alt="Profile Picture" class="rounded-circle me-3" style="width: 50px; height: 50px;" />
+                                    <span>
+                                        <strong>@mod.DisplayName</strong>
+                                    </span>
+                                </a>
 
-                                <button class="btn btn-danger" type="submit">Delete Channel</button>
+                                <div class="moderator-buttons ms-auto d-flex justify-content-evenly w-50">
 
-                            </form>
+                                    @if (ViewBag.AfisareButoane == true) @*Avand in vedere ca aici sunt moderatori, in dreptul lor va aparea butonul de demote to user*@
+                                    {
+                                        @if (mod.DisplayName != "admin@test.com" && mod.DisplayName != "editor@test.com") @*un mod foarte lenes de a verifica ca mod-ul actual este chiar Admin sau Editor (basically unul din ei a creat workspace-ul)
+                            in dreptul lor nu are logica sa afisam butoanele de demote/remove pt ca ei oricum o sa aiba acces la workspace si toate privilegiile in continuare*@
+                                        {
+                                            @*butonul de demote la nivelul de user*@
+                                            <form asp-controller="Workspaces" asp-action="DemoteToUser" method="post">
+                                                <input type="hidden" name="WorkspaceId" value="@mod.WorkspaceId" />
+                                                <input type="hidden" name="UserId" value="@mod.UserId" />
+                                                <button class="btn btn-warning" type="submit">Demote</button> @*Mergem spre functia din controller care face campul de moderator=false*@
+                                            </form>
+
+                                            <form asp-controller="Workspaces" asp-action="RemoveMember" method="post">
+                                                @*in dreptul fiecarui user va fi un buton de remove :(*@
+                                                <input type="hidden" name="WorkspaceId" value="@mod.WorkspaceId" />
+                                                <input type="hidden" name="UserId" value="@mod.UserId" />
+                                                <button class="btn btn-danger" type="submit">Remove</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace*@
+                                            </form>
+                                        }
+                                    }
+
+                                </div>
+                            </li>
                         }
-                    </div>
-                </div>
-            </li>
+                    </ul>
+                }
+                else
+                {
+                    <p>No moderators are currently part of this workspace.</p>
+                }
+            </div>
+
             <br />
-        }
-    </ul>
+            <br />
+
+            @*Afisare lista useri*@
+            <h4 class="section-title text-center">Users in this Workspace:</h4>
+
+            <div class="users-container">
+                @if (ViewBag.Users != null && ViewBag.Users.Count > 0)
+                {
+                    <ul class="list-group">
+                        @foreach (var user in ViewBag.Users)
+                        {
+                            <li class="list-group-item d-flex align-items-center">
+                                @*orice user poate vizualiza ceilalti useri*@
+                                <a asp-controller="Profiles" asp-action="Show" asp-route-id="@user.UserId" class="d-flex align-items-center text-decoration-none">
+                                    <img src="@user.ProfileImage" alt="Profile Picture" class="rounded-circle me-3" style="width: 50px; height: 50px;" />
+                                    <span>
+                                        <strong>@user.DisplayName</strong>
+                                    </span>
+                                </a>
+                                <div class="user-buttons ms-auto d-flex justify-content-evenly w-50" >
+
+                                    @if (ViewBag.AfisareButoane == true) @*Avand in vedere ca aici sunt useri normal, in dreptul lor va aparea butonul de promote to moderator*@
+                                    {
+                                        @*butonul de promote*@
+                                        <form asp-controller="Workspaces" asp-action="PromoteToMod" method="post">
+                                            <input type="hidden" name="WorkspaceId" value="@user.WorkspaceId" />
+                                            <input type="hidden" name="UserId" value="@user.UserId" />
+                                            <button class="btn btn-success" type="submit">Promote</button> @*Mergem spre functia din controller care face campul de moderator=true*@
+                                        </form>
+
+                                        <form asp-controller="Workspaces" asp-action="RemoveMember" method="post">
+                                            @*in dreptul fiecarui user va fi un buton de remove :(*@
+                                            <input type="hidden" name="WorkspaceId" value="@user.WorkspaceId" />
+                                            <input type="hidden" name="UserId" value="@user.UserId" />
+                                            <button class="btn btn-danger" type="submit">Remove</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace*@
+                                        </form>
+                                    }
+
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No users are currently part of this workspace.</p>
+                }
+            </div>
+
+        </div>
+
+    </div>
 </div>
 
-@*Afisare lista moderatori*@
-<h4 class="card-title alert-success py-3 px-3 rounded-2">Moderators in this Workspace:</h4>
-
-@if (ViewBag.Moderators != null && ViewBag.Moderators.Count > 0)
+@if (ViewBag.AfisareButoane == true) @*Doar Admin/Editor/Moderatorii de pe workspace pot adauga canal*@
 {
-    <ul class="list-group">
-        @foreach (var mod in ViewBag.Moderators)
-        {
-            <li class="list-group-item d-flex align-items-center">
-                <img src="@mod.ProfileImage" alt="Profile Picture" class="rounded-circle me-3" style="width: 50px; height: 50px;" />
-                <span>
-                    <strong>@mod.DisplayName</strong>
-                </span>
-                <div class="d-flex flex-row justify-content-between">
-                    <a class="btn btn-primary" asp-controller="Profiles" asp-action="Show" asp-route-id="@mod.UserId">View Profile</a> @*orice user poate vizualiza ceilalti useri*@
-
-                    @if (ViewBag.AfisareButoane == true) @*Avand in vedere ca aici sunt moderatori, in dreptul lor va aparea butonul de demote to user*@
-                    {
-                        @if (mod.DisplayName != "admin@test.com" && mod.DisplayName != "editor@test.com") @*un mod foarte lenes de a verifica ca mod-ul actual este chiar Admin sau Editor (basically unul din ei a creat workspace-ul)
-                                                                                                           in dreptul lor nu are logica sa afisam butoanele de demote/remove pt ca ei oricum o sa aiba acces la workspace si toate privilegiile in continuare*@
-                        {
-                            @*butonul de demote la nivelul de user*@
-                            <form asp-controller="Workspaces" asp-action="DemoteToUser" method="post">
-                                <input type="hidden" name="WorkspaceId" value="@mod.WorkspaceId" />
-                                <input type="hidden" name="UserId" value="@mod.UserId" />
-                                <button class="btn btn-warning" type="submit">Demote to User</button> @*Mergem spre functia din controller care face campul de moderator=false*@
-                            </form>
-
-                            <form asp-controller="Workspaces" asp-action="RemoveMember" method="post">
-                                @*in dreptul fiecarui user va fi un buton de remove :(*@
-                            <input type="hidden" name="WorkspaceId" value="@mod.WorkspaceId" />
-                            <input type="hidden" name="UserId" value="@mod.UserId" />
-                            <button class="btn btn-danger" type="submit">Remove from workspace</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace*@
-                        </form>
-                        }
-                    }
-
-                </div>
-            </li>
-        }
-    </ul>
-}
-else
-{
-    <p>No moderators are currently part of this workspace.</p>
-}
-
-
-@*Afisare lista useri*@
-<h4 class="card-title alert-success py-3 px-3 rounded-2">Users in this Workspace:</h4>
-
-@if (ViewBag.Users != null && ViewBag.Users.Count > 0)
-{
-    <ul class="list-group">
-        @foreach (var user in ViewBag.Users)
-        {
-            <li class="list-group-item d-flex align-items-center">
-                <img src="@user.ProfileImage" alt="Profile Picture" class="rounded-circle me-3" style="width: 50px; height: 50px;" />
-                <span>
-                    <strong>@user.DisplayName</strong>
-                </span>
-                <div class="d-flex flex-row justify-content-between">
-                    <a class="btn btn-primary" asp-controller="Profiles" asp-action="Show" asp-route-id="@user.UserId">View Profile</a> @*orice user poate vizualiza ceilalti useri*@
-
-                    @if (ViewBag.AfisareButoane == true) @*Avand in vedere ca aici sunt useri normal, in dreptul lor va aparea butonul de promote to moderator*@
-                    {
-                     @*butonul de promote*@
-                    <form asp-controller="Workspaces" asp-action="PromoteToMod" method="post">
-                        <input type="hidden" name="WorkspaceId" value="@user.WorkspaceId" />
-                        <input type="hidden" name="UserId" value="@user.UserId" />
-                        <button class="btn btn-success" type="submit">Promote to Moderator</button> @*Mergem spre functia din controller care face campul de moderator=true*@
-                    </form>
-                    
-                    <form asp-controller="Workspaces" asp-action="RemoveMember" method="post"> @*in dreptul fiecarui user va fi un buton de remove :(*@
-                        <input type="hidden" name="WorkspaceId" value="@user.WorkspaceId" />
-                        <input type="hidden" name="UserId" value="@user.UserId" />
-                        <button class="btn btn-danger" type="submit">Remove from workspace</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace*@
-                    </form>
-                    }
-
-                </div>
-            </li>
-        }
-    </ul>
-}
-else
-{
-    <p>No users are currently part of this workspace.</p>
+    <a class="btn btn-success add-channel-button" asp-controller="Channels" asp-action="New" asp-route-id="@Model.WorkspaceId">Add a new channel!</a>
 }
 
 @*
