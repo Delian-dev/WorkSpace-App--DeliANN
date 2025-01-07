@@ -3,6 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+.container {
+    font-family: "Inter", serif;
+}
+
 
 .channel-list-container {
     max-height: 400px; /* inaltime fixata pentru containerul de canale */
@@ -23,13 +27,6 @@
     border-radius: 5px;
 }
 
-.channel-name {
-    max-width: 70%; /* asta e ca sa nu se bage numele canalului peste butoane (daca e foarte lung) */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
 .card {
     display: flex;
     flex-direction: column;
@@ -45,6 +42,13 @@
 
 .btn {
     margin: 2px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+}
+
+.display-username {
+    font-size: 16px;
 }
 
 .workspace-info-container {
@@ -70,15 +74,17 @@
 }
 
 .section-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     text-align: center;
     background-color: #d1e7dd;
     padding: 10px;
     border-radius: 5px;
+    background-color: var(--accent-color);
+    color: #f9f9f9;
 }
 
 .section-title-workspace {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     text-align: center;
     background-color: #d1e7dd;
     padding: 15px;
@@ -100,6 +106,35 @@
     gap: 10px;
     padding-right: 10px;
 }
+
+.channel-name {
+    max-width: 70%; /* asta e ca sa nu se bage numele canalului peste butoane (daca e foarte lung) */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: var( --accent-color);
+    color: #f9f9f9;
+}
+
+.channel-name:hover {
+    background-color: var( --secondary-color);
+    color: #f9f9f9;
+}
+
+.channel-edit,.channel-delete {
+    background-color: var( --accent-color);
+    color: #f9f9f9;
+}
+
+.channel-edit:hover{
+    background-color: var( --secondary-color);
+    color: #f9f9f9;
+}
+
+    .channel-delete:hover {
+        background-color: var( --secondary-color);
+        color: #f9f9f9;
+    }
 
 .moderator-buttons, .user-buttons {
     display: flex;
