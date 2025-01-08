@@ -1,0 +1,38 @@
+﻿@model Proiect_DAW_DeliANN.Models.Post
+<h2>Editare postare</h2>
+<br />
+
+
+<form asp-action="Edit" asp-controller="Posts" asp-route-id="@Model.PostId" method="post">
+
+    <div class="form-group">
+        <input type="hidden" name="ChannelId" value="@Model.ChannelId" />
+        <label asp-for="Content" class="form-label">Conținut postare</label>
+
+        <br />
+        <textarea asp-for="Content" class="form-control"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Post Type</label>
+            <div>
+                <input type="radio" id="typeImportant" name="Type" value="true"
+                @(Model.Type ? "checked" : "") />
+                <label for="typeImportant">Important</label>
+            </div>
+            <div>
+                <input type="radio" id="typeNormal" name="Type" value="false"
+                @(!Model.Type ? "checked" : "") />
+                <label for="typeNormal">Normal</label>
+            </div>
+            @*<span asp-validation-for="Type" class="text-danger"></span>*@
+        </div>
+    </div>
+
+    <br /><br />
+
+    <button class="btn btn-primary" type="submit">Editează postarea</button>
+
+</form>
+
+

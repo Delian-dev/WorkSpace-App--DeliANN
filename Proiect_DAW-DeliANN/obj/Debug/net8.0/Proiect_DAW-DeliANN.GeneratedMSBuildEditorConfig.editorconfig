@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\DelianDan\OneDrive - unibuc.ro\Desktop\FMI\FMI-Anul 2\Semestrul 1\ASP.Net\Proiect_DAW-DeliANN\Proiect_DAW-DeliANN
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/DelianDan/OneDrive - unibuc.ro/Desktop/FMI/FMI-Anul 2/Semestrul 1/ASP.Net/Proiect_DAW-DeliANN/Proiect_DAW-DeliANN/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/DelianDan/OneDrive - unibuc.ro/Desktop/FMI/FMI-Anul 2/Semestrul 1/ASP.Net/Proiect_DAW-DeliANN/Proiect_DAW-DeliANN/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -84,6 +88,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/DelianDan/OneDrive - unibuc.ro/Desktop/FMI/FMI-Anul 2/Semestrul 1/ASP.Net/Proiect_DAW-DeliANN/Proiect_DAW-DeliANN/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DelianDan/OneDrive - unibuc.ro/Desktop/FMI/FMI-Anul 2/Semestrul 1/ASP.Net/Proiect_DAW-DeliANN/Proiect_DAW-DeliANN/Views/Posts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DelianDan/OneDrive - unibuc.ro/Desktop/FMI/FMI-Anul 2/Semestrul 1/ASP.Net/Proiect_DAW-DeliANN/Proiect_DAW-DeliANN/Views/Posts/New.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcTmV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/DelianDan/OneDrive - unibuc.ro/Desktop/FMI/FMI-Anul 2/Semestrul 1/ASP.Net/Proiect_DAW-DeliANN/Proiect_DAW-DeliANN/Views/Profiles/Edit.cshtml]

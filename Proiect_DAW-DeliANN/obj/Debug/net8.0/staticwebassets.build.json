@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tcUtT7LnUC3swz3EtDvQFE/MdF3gnAPqzfDbLP91Ots=",
+  "Hash": "4/YbafIovaTk/6nDVJwNwq6RD0Pv33ZeX2utZEmF1/0=",
   "Source": "Proiect_DAW-DeliANN",
   "BasePath": "_content/Proiect_DAW-DeliANN",
   "Mode": "Default",
@@ -1214,6 +1214,25 @@
       "OriginalItemSpec": "wwwroot\\css\\FormStylings.css"
     },
     {
+      "Identity": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\requests.css",
+      "SourceId": "Proiect_DAW-DeliANN",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\",
+      "BasePath": "_content/Proiect_DAW-DeliANN",
+      "RelativePath": "css/requests.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\requests.css"
+    },
+    {
       "Identity": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\site.css",
       "SourceId": "Proiect_DAW-DeliANN",
       "SourceType": "Discovered",
@@ -1233,12 +1252,12 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\WorkspaceShow.css",
+      "Identity": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\WorkspaceIndex.css",
       "SourceId": "Proiect_DAW-DeliANN",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\",
       "BasePath": "_content/Proiect_DAW-DeliANN",
-      "RelativePath": "css/WorkspaceShow.css",
+      "RelativePath": "css/WorkspaceIndex.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1249,7 +1268,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\WorkspaceShow.css"
+      "OriginalItemSpec": "wwwroot\\css\\WorkspaceIndex.css"
+    },
+    {
+      "Identity": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\WorkspaceShow2.css",
+      "SourceId": "Proiect_DAW-DeliANN",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\",
+      "BasePath": "_content/Proiect_DAW-DeliANN",
+      "RelativePath": "css/WorkspaceShow2.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\WorkspaceShow2.css"
     },
     {
       "Identity": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\favicon.ico",

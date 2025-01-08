@@ -47,6 +47,25 @@
     border-radius: 5px;
 }
 
+.safe-btn{
+    background-color: var( --secondary-color);
+    color: #f9f9f9;
+}
+
+    .safe-btn:hover {
+        background-color: var( --accent-color);
+    }
+
+.danger-btn {
+    background-color: var( --dark-accent-color);
+    color: #f9f9f9;
+}
+
+    .danger-btn:hover {
+        background-color: var( --accent-color);
+    }
+
+
 .display-username {
     font-size: 16px;
 }
@@ -89,6 +108,16 @@
     background-color: #d1e7dd;
     padding: 15px;
     border-radius: 5px;
+    background-color: var(--accent-color);
+    color: #f9f9f9;
+}
+
+.last-edited {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+    background-color: var(--accent-color);
+    color: #f9f9f9;
 }
 
 .workspace-info-card {
@@ -97,9 +126,9 @@
     background-color: #f8f9fa;
 }
 
-.workspace-info-card .card-body .d-flex {
-    padding: 0 10px;
-}
+    .workspace-info-card .card-body .d-flex {
+        padding: 0 10px;
+    }
 
 .channel-buttons {
     display: flex;
@@ -116,24 +145,21 @@
     color: #f9f9f9;
 }
 
-.channel-name:hover {
-    background-color: var( --secondary-color);
-    color: #f9f9f9;
-}
+    .channel-name:hover {
+        background-color: var( --secondary-color);
+    }
 
-.channel-edit,.channel-delete {
+.channel-edit, .channel-delete {
     background-color: var( --accent-color);
     color: #f9f9f9;
 }
 
-.channel-edit:hover{
-    background-color: var( --secondary-color);
-    color: #f9f9f9;
-}
+    .channel-edit:hover {
+        background-color: var( --secondary-color);
+    }
 
     .channel-delete:hover {
         background-color: var( --secondary-color);
-        color: #f9f9f9;
     }
 
 .moderator-buttons, .user-buttons {
@@ -142,8 +168,38 @@
     gap: 10px;
 }
 
-.add-channel-button {
-    margin-top: 20px; /* Add space above the button */
-    margin-left: 10px;
-    text-align: center; /* Center-align the button within its container */
+.promote-btn, .demote-btn{
+    background-color: var( --secondary-color);
+    color: #f9f9f9;
 }
+
+    .promote-btn:hover {
+        background-color: var( --accent-color);
+    }
+
+    .demote-btn:hover {
+        background-color: var( --accent-color);
+        color: #f9f9f9;
+    }
+
+.remove-btn {
+    background-color: var( --dark-accent-color);
+    color: #f9f9f9;
+}
+
+.remove-btn:hover {
+    background-color: var( --accent-color);
+}
+
+.channel-add {
+    margin-top: 20px;
+    margin-left: 10px;
+    text-align: center;
+    background-color: var( --accent-color);
+    color: #f9f9f9;
+}
+
+    .channel-add:hover {
+        background-color: var( --secondary-color);
+        color: #f9f9f9;
+    }
