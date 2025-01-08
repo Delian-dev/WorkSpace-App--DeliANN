@@ -1,0 +1,52 @@
+﻿@model Proiect_DAW_DeliANN.Models.Post
+
+
+<h2 class="text-center mt-5">Add a post</h2>
+
+<br />
+
+<form enctype="multipart/form-data" method="post" asp-action="New" asp-controller="Posts">
+    @*tag-ul de enctype pt fisiere media*@
+    <!--
+        Metoda 2 prin care se trimite id-ul catre Controller
+    <input type="hidden" asp-for="Id" />  -->
+    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+    <input type="hidden" name="ChannelId" value="@Model.ChannelId" />
+
+    <div class="form-group">
+        <label asp-for="Content" class="form-label">Content of post:</label>
+
+        <br />
+        <textarea asp-for="Content" class="form-control"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+
+        <br /><br />
+    </div>
+
+
+
+    <div class="form-group custom-select">
+        @*Select pentru status*@
+        <label asp-for="Type" class="form-label">Message Type</label>
+        <select asp-for="Type" class="form-control">
+            <option value="true">Important</option> @*facem campul true*@
+            <option value="false">Normal</option> @*facem campul false*@
+        </select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+
+        <br /><br />
+    </div>
+
+
+    <div class="form-group custom-select">
+        <label asp-for="Media">Add media:</label>
+        <input asp-for="Media" class="form-control" type="file" name="Media" /> @*name trebuie sa fie la fel cu numele parametrului pe care il trimitem in functia de edit Post (pt model binding)*@
+        @*<span asp-validation-for="Media" class="text-danger"></span>*@
+
+        <br /><br />
+    </div>
+
+    <button class="btn btn-sm btn-success custom-btn" type="submit">Send!</button>
+
+</form>

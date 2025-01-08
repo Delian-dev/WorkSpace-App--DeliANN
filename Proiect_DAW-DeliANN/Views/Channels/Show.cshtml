@@ -19,7 +19,7 @@
 </div>
 
 <br />
-<div class="container mt-2">
+<div class="container mt-3">
     <div class="row">
         <!-- Left column for Workspace Channels -->
         <div class="col-md-4">
@@ -37,6 +37,20 @@
         </div>
 
         <!-- Right column for Posts -->
+        @*<div class="col-md-8 card">
+        <div>
+        <br />
+        @foreach (var post in Model.Posts)
+        {
+        <div class="container mb-4 p-3 border rounded">
+        <p>@post.Content</p>
+        <small class="text-muted">@post.Date</small>
+        <strong><i class="bi bi-person"></i> @post.User.UserName</strong>
+        </div>
+        }
+        </div>*@
+
+
         <div class="col-md-8 card">
             <div>
                 <br />
@@ -44,12 +58,67 @@
                 {
                     <div class="container mb-4 p-3 border rounded">
                         <p>@post.Content</p>
+                        @*@if (@post.Media != null)
+                    {
+                    <img src="@post.Media" alt="Media" class="img-thumbnail" style="width:150px; height:150px;" />
+                    }*@
+                        @if (@post.Media != null)
+                        {
+                            string extension = (post.Media).Split(".")[1].ToLower();
+
+
+                            @if (new[] { "jpg", "jpeg", "png", "gif" }.Contains(extension))
+                            {
+                                <img src="@post.Media" alt="Media" class="img-thumbnail" style="width:150px; height:150px;" />
+                            }
+                            else if (extension == "mp4")
+                            {
+                                <video controls style="max-width:560;">
+                                    <source src="@post.Media" type="video/mp4" />
+                                </video>
+                            }
+                            else
+                            {
+                                <video controls style="max-width:560;">
+                                    <source src="@post.Media" />
+                                </video>
+                            }
+                        }
+                        @*@foreach (var user in ViewBag.Users)
+                    {
+                    @if @post.User.UserId
+                    }*@
                         <small class="text-muted">@post.Date</small>
                         <strong><i class="bi bi-person"></i> @post.User.UserName</strong>
+
+                        <div class="mt-3">
+                            <!-- Edit Button -->
+                            <a asp-controller="Posts" asp-action="Edit" asp-route-id="@post.PostId" class="btn btn-primary btn-sm">
+                                <i class="bi bi-pencil"></i> Edit
+                            </a>
+
+                            <!-- Delete Button -->
+                            <form asp-action="Delete" asp-controller="Posts" asp-route-id=" @post.PostId" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Delete
+                                </button>
+                            </form>
+
+                            @*<a href="#reply-form" asp-action="Show" asp-controller="Channels"
+                        class="btn btn-info btn-sm ms-2" data-parent-id="@post.PostId">
+                        <i class="bi bi-reply"></i> Reply
+                        </a>*@
+
+                            <!-- Reply Form for the current post -->
+
+                        </div>
                     </div>
                 }
             </div>
+
         </div>
+
     </div>
+    <a class="btn btn-primary btn-sm" asp-area="" asp-controller="Posts" asp-action="New" asp-route-id="@Model.ChannelId">Add a post!</a>
 </div>
 
