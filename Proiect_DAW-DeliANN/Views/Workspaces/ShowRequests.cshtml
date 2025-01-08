@@ -1,5 +1,27 @@
 ﻿@model IEnumerable<dynamic>
 
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/requests.css" rel="stylesheet" />
+
 <h2>Pending Requests</h2>
 
 @if (Model != null && Model.Any())
@@ -8,7 +30,7 @@
         <thead>
             <tr>
                 <th>Profile Photo</th>
-                <th>Display Name</th>
+                <th>Username</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -26,12 +48,12 @@
                         <form asp-controller="Workspaces" asp-action="AcceptRequest" method="post">
                             <input type="hidden" name="WorkspaceId" value="@user.WorkspaceId" />
                             <input type="hidden" name="UserId" value="@user.UserId" />
-                            <button class="btn btn-success" type="submit">Accept</button> @*Mergem spre functia din controller care face campul de status=true (este acceptat)*@
+                            <button class="btn btn-success accept-btn" type="submit"><i class="bi bi-check2"></i> Accept</button> @*Mergem spre functia din controller care face campul de status=true (este acceptat)*@
                         </form>
                         <form asp-controller="Workspaces" asp-action="RejectRequest" method="post">
                             <input type="hidden" name="WorkspaceId" value="@user.WorkspaceId" />
                             <input type="hidden" name="UserId" value="@user.UserId" />
-                            <button class="btn btn-danger" type="submit">Reject</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace (va trebuie sa dea request din nou)*@
+                            <button class="btn btn-danger reject-btn" type="submit"><i class="bi bi-x"></i> Reject</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace (va trebuie sa dea request din nou)*@
                         </form>
                     </td>
                 </tr>

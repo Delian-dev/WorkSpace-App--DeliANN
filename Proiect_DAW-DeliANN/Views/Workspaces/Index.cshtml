@@ -1,9 +1,30 @@
 ﻿@model Proiect_DAW_DeliANN.Models.Workspace
 
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/WorkspaceIndex.css" rel="stylesheet" />
+
 <br />
 <h2 class="text-center">Afisare Workspaces</h2>
 
-<br />
 
 @if (ViewBag.Message != null)
 {
@@ -16,11 +37,11 @@
 
 @if (!ViewBag.EsteAdmin && !ViewBag.EsteEditor) @* Are logica sa vedem butoanele de comutare intre toate workspace-urile respectiv doar cele de care apartinem numai daca suntem useri normali. Admin si Editor oricum au acces la toate*@
 {
-    <div class="d-flex justify-content-center">
+    <div class="explore-buttons">
 
-        <a class="btn btn-outline-success" href="/Workspaces/Index/">Exploreaza Workspace-urile</a>
+        <a class="btn btn-explore" href="/Workspaces/Index/">Exploreaza Workspace-urile</a>
         <br />
-        <a class="btn btn-outline-success" href="/Workspaces/Index_personalizat_user">Workspace-urile mele</a>
+        <a class="btn btn-workspaces" href="/Workspaces/Index_personalizat_user">Workspace-urile mele</a>
         <br />
 
     </div>
@@ -32,7 +53,7 @@
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search topics or keywords" name="search"
                value="@ViewBag.SearchString">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-search" type="submit">Search</button>
     </div>
 </form>
 
@@ -44,25 +65,23 @@
         <div class="card-body">
 
             <a asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId" class="text-decoration-none">
-                <h3 class="card-title alert-success py-3 px-3 rounded-2">@workspace.Name</h3>
+                <h3 class="card-title">@workspace.Name</h3>
             </a>
 
-            <div class="card-text">@Html.Raw(workspace.Description)</div>
-
-            <div class="d-flex justify-content-between flex-row mt-5">
-
-                <div><i class="bi bi-globe"></i> @workspace.Category.CategoryName</div>
-
-                <span class="alert-success">@workspace.Date</span>
-
+            <div class="workspace-info-container mt-5">
+                <div class="left-section card-text">@Html.Raw(workspace.Description)</div>
+                <div class="right-section">
+                    <div><i class="bi bi-globe"></i> @workspace.Category.CategoryName</div>
+                    <p>Last edited: <span class="last-edited">@workspace.Date</span> </p>
+                </div>
             </div>
 
         </div>
 
         @if(ViewBag.EsteAdmin || ViewBag.EsteEditor)
         {
-            <a class="btn btn-success" asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId">
-                Enter Workspace
+            <a class="btn btn-enter-admin" asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId">
+                <i class="bi bi-box-arrow-in-right"></i> Enter Workspace
             </a>
 
         }
@@ -74,27 +93,27 @@
 
             @if(relation == null)
             {
-                <form asp-controller="Workspaces" asp-action="RequestToJoin" method="post">
+                <form asp-controller="Workspaces" asp-action="RequestToJoin" method="post" class="request-form">
                     <input type="hidden" name="WorkspaceId" value="@workspace.WorkspaceId"/>
-                    <button class="btn btn-primary" type="submit">Request to join</button> @*Mergem spre functia din controller ce da add la legatura user-workspace in tabelul asociativ cu status=False*@
+                    <button class="btn btn-request" type="submit"><i class="bi bi-person-plus-fill"></i> Request to join</button> @*Mergem spre functia din controller ce da add la legatura user-workspace in tabelul asociativ cu status=False*@
                 </form>
                
             }
             else if(relation.status)
             {
-                <div class="d-flex justify-content-center">
-                    <a class="btn btn-success" asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId">Enter Workspace</a>
+                <div class="d-flex justify-content-center enter-leave-buttons">
+                    <a class="btn btn-enter" asp-controller="Workspaces" asp-action="Show" asp-route-id="@workspace.WorkspaceId"><i class="bi bi-box-arrow-in-right"></i> Enter Workspace</a>
                     <form asp-controller="Workspaces" asp-action="LeaveWorkspace" method="post">
                         <input type="hidden" name="WorkspaceId" value="@workspace.WorkspaceId" />
-                        <button class="btn btn-danger">Leave Workspace</button> @*Stergem legatura din tabelul asociativ (cu status=true)*@
+                        <button class="btn btn-leave"><i class="bi bi-box-arrow-left"></i> Leave Workspace</button> @*Stergem legatura din tabelul asociativ (cu status=true)*@
                     </form>
                 </div>
             }
             else
             {
-                 <form asp-controller="Workspaces" asp-action="CancelRequest" method="post">
+                 <form asp-controller="Workspaces" asp-action="CancelRequest" method="post" class="request-form">
                     <input type="hidden" name="WorkspaceId" value="@workspace.WorkspaceId"/>
-                    <button class="btn btn-warning">Cancel request</button> @*Stergem legatura din tabelul asociativ*@
+                    <button class="btn btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancel request</button> @*Stergem legatura din tabelul asociativ*@
                  </form>
             }   
         }
@@ -107,7 +126,7 @@
 
 @* Afisarea paginata a workspace-urilor *@
 
-<div>
+<div class="paginare">
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">

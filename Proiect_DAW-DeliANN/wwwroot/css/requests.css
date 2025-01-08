@@ -1,0 +1,79 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+table {
+    font-family: "Inter", serif;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid;
+    border-color: var(--dark-accent-color) !important;
+    margin: 20px 0;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+th {
+    background-color: var(--accent-color)!important;
+    color: #f9f9f9;
+}
+
+td {
+    border: 10px solid;
+    border-color: var(--deep-dark-color) !important;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+td:first-child { /*pt poza facem coloana mai mica*/
+    width: 100px;
+}
+
+td:last-child{
+    width: 300px;
+}
+
+td:last-child form {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+td:last-child button {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+tbody tr {
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.btn{
+    padding-right: 18px;
+    border: none;
+    font-size: 13px;
+}
+
+.accept-btn {
+    background-color: var( --secondary-color);
+    color: #f9f9f9;
+}
+
+    .accept-btn:hover {
+        background-color: var( --accent-color);
+    }
+
+.reject-btn {
+    background-color: var( --dark-accent-color);
+    color: #f9f9f9;
+}
+
+    .reject-btn:hover {
+        background-color: var( --accent-color);
+    }

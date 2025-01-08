@@ -1,0 +1,196 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+h2, div, form {
+    font-family: "Inter", serif;
+}
+
+.explore-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control {
+    border-color: var(--dark-accent-color);
+    background-color: #f9f9f9;
+}
+
+    .form-control:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 5px var( --accent-color);
+    }
+
+.btn-search {
+    font-size: 16px;
+    background-color: var( --dark-accent-color);
+    color: #f9f9f9;
+}
+
+    .btn-search:hover {
+        background-color: var( --accent-color);
+        color: #f9f9f9;
+    }
+
+.card{
+    padding-bottom: 10px;
+}
+
+.card-title {
+    text-decoration: none;
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: var(--accent-color);
+    color: #f9f9f9;
+}
+
+.workspace-info-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.left-section {
+    flex: 0 0 60%;
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-section {
+    flex: 0 0 40%;
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.last-edited {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+    background-color: var(--accent-color);
+    color: #f9f9f9;
+}
+
+.btn-enter, .btn-cancel, .btn-explore, .btn-leave, .btn-request, .btn-workspaces{
+    border: none;
+    font-size: 15px;
+    color: #f9f9f9;
+    margin-top: 55px;
+}
+
+.enter-leave-buttons {
+    display: flex;
+    gap: 50px;
+    padding-right: 10px;
+}
+
+
+.btn-enter {
+    background-color: var( --secondary-color);
+    color: #f9f9f9;
+}
+
+    .btn-enter:hover {
+        background-color: var( --accent-color);
+        color: #f9f9f9;
+    }
+
+.btn-cancel {
+    font-size: 16px;
+    background-color: var( --dark-accent-color);
+    color: #f9f9f9;
+}
+
+    .btn-cancel:hover {
+        background-color: var( --accent-color);
+        color: #f9f9f9;
+    }
+
+.btn-leave {
+    background-color: var( --dark-accent-color);
+    color: #f9f9f9;
+}
+
+    .btn-leave:hover {
+        background-color: var( --accent-color);
+        color: #f9f9f9;
+    }
+
+.btn-explore, .btn-workspaces{
+    border: solid 3px var(--secondary-color);
+    background-color: #ffffff;
+    color: var( --accent-color);
+    font-size: 17px;
+    font-weight: bold;
+    margin-right: 120px;
+}
+
+    .btn-explore:hover {
+        border: solid 3px var(--secondary-color);
+        background-color: var( --accent-color);
+        color: #ffffff;
+    }
+
+    .btn-workspaces:hover {
+        border: solid 3px var(--secondary-color);
+        background-color: var( --accent-color);
+        color: #ffffff;
+    }
+
+.btn-request {
+    background-color: var( --secondary-color);
+    color: #f9f9f9;
+}
+
+    .btn-request:hover {
+        background-color: var( --accent-color);
+        color: #f9f9f9;
+    }
+
+.btn-enter-admin {
+    margin-top: 55px;
+    font-size: 15px;
+    width: 15%;
+    align-self: center;
+    background-color: var( --secondary-color);
+    color: #f9f9f9;
+}
+
+    .btn-enter-admin:hover {
+        background-color: var( --accent-color);
+        color: #f9f9f9;
+    }
+
+.request-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.paginare{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.page-item >a{
+    background-color: var( --secondary-color);
+    color: #ffffff;
+}
+
+    .page-item > a:hover {
+        background-color: #ffffff;
+        color: var( --secondary-color);
+    }

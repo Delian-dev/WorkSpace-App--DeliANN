@@ -20,7 +20,7 @@
     }
 </style>
 
-<link href="~/css/WorkspaceShow.css" rel="stylesheet" />
+<link href="~/css/WorkspaceShow2.css" rel="stylesheet" />
 
 @if (TempData["message"] != null)
 {
@@ -44,7 +44,7 @@
 
                     <div><i class="bi bi-person"></i> Created by: @Model.User.Profile.DisplayName</div>
 
-                    <span class="alert-success">@Model.Date</span>
+                    <p>Last edited: <span class="last-edited">@Model.Date</span> </p>
 
                 </div>
             </div>
@@ -55,15 +55,15 @@
         {
             <div class="d-flex justify-content-between mt-3">
 
-                <a class="btn btn-success" asp-controller="Workspaces" asp-action="Edit" asp-route-id="@Model.WorkspaceId">Edit Workspace</a>
+                <a class="btn btn-success safe-btn" asp-controller="Workspaces" asp-action="Edit" asp-route-id="@Model.WorkspaceId">Edit Workspace</a>
 
                 <form method="post" asp-controller="Workspaces" asp-action="Delete" asp-route-id="@Model.WorkspaceId">
 
-                    <button class="btn btn-danger" type="submit">Delete workspace</button>
+                    <button class="btn btn-danger danger-btn" type="submit">Delete workspace</button>
 
                 </form>
 
-                <a class="btn btn-success" asp-controller="Workspaces" asp-action="ShowRequests" asp-route-id="@Model.WorkspaceId">See Requests</a>
+                <a class="btn btn-success safe-btn" asp-controller="Workspaces" asp-action="ShowRequests" asp-route-id="@Model.WorkspaceId">See Requests</a>
 
             </div>
         }
@@ -81,27 +81,34 @@
             <h4 class="section-title text-center">Channel List:</h4>
             <div class="channel-list-container">
                 <ul class="list-unstyled">
-                    @foreach (var chn in Model.Channels)
+                    @if (Model.Channels.Count > 0)
                     {
-                        <li>
-                            <div class="card mb-3">
-                                <div class="d-flex align-items-center justify-content-between p-2">
-                                    <a class="btn btn-success text-truncate channel-name" asp-controller="Channels" asp-action="Show" asp-route-id="@chn.ChannelId">@chn.Name</a>
-                                    @if (ViewBag.AfisareButoane == true) @*Doar Admin/Editor/Moderatorii de pe workspace pot edita si sterge canale*@
-                                    {
-                                        <div class="channel-buttons">
-                                            <a class="btn btn-success me-2 channel-edit" asp-controller="Channels" asp-action="Edit" asp-route-id="@chn.ChannelId"><i class="bi bi-pencil-square"></i> Edit </a>
-                                            <form method="post" asp-controller="Channels" asp-action="Delete" asp-route-id="@chn.ChannelId">
+                        @foreach (var chn in Model.Channels)
+                        {
+                            <li>
+                                <div class="card mb-3">
+                                    <div class="d-flex align-items-center justify-content-between p-2">
+                                        <a class="btn btn-success text-truncate channel-name" asp-controller="Channels" asp-action="Show" asp-route-id="@chn.ChannelId">@chn.Name</a>
+                                        @if (ViewBag.AfisareButoane == true) @*Doar Admin/Editor/Moderatorii de pe workspace pot edita si sterge canale*@
+                                        {
+                                            <div class="channel-buttons">
+                                                <a class="btn btn-success me-2 channel-edit" asp-controller="Channels" asp-action="Edit" asp-route-id="@chn.ChannelId"><i class="bi bi-pencil-square"></i> Edit </a>
+                                                <form method="post" asp-controller="Channels" asp-action="Delete" asp-route-id="@chn.ChannelId">
 
-                                                <button class="btn btn-danger channel-delete" type="submit"><i class="bi bi-trash-fill"></i> Delete </button>
+                                                    <button class="btn btn-danger channel-delete" type="submit"><i class="bi bi-trash-fill"></i> Delete </button>
 
-                                            </form>
-                                        </div>
-                                    }
+                                                </form>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <br />
+                            </li>
+                            <br />
+                        }
+                    }
+                    else
+                    {
+                        <p>No channels have been created yet.</p>
                     }
                 </ul>
             </div>
@@ -138,14 +145,14 @@
                                             <form asp-controller="Workspaces" asp-action="DemoteToUser" method="post">
                                                 <input type="hidden" name="WorkspaceId" value="@mod.WorkspaceId" />
                                                 <input type="hidden" name="UserId" value="@mod.UserId" />
-                                                <button class="btn btn-warning" type="submit">Demote</button> @*Mergem spre functia din controller care face campul de moderator=false*@
+                                                <button class="btn btn-warning demote-btn" type="submit">Demote</button> @*Mergem spre functia din controller care face campul de moderator=false*@
                                             </form>
 
                                             <form asp-controller="Workspaces" asp-action="RemoveMember" method="post">
                                                 @*in dreptul fiecarui user va fi un buton de remove :(*@
                                                 <input type="hidden" name="WorkspaceId" value="@mod.WorkspaceId" />
                                                 <input type="hidden" name="UserId" value="@mod.UserId" />
-                                                <button class="btn btn-danger" type="submit">Remove</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace*@
+                                                <button class="btn btn-danger remove-btn" type="submit">Remove</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace*@
                                             </form>
                                         }
                                     }
@@ -189,14 +196,14 @@
                                         <form asp-controller="Workspaces" asp-action="PromoteToMod" method="post">
                                             <input type="hidden" name="WorkspaceId" value="@user.WorkspaceId" />
                                             <input type="hidden" name="UserId" value="@user.UserId" />
-                                            <button class="btn btn-success" type="submit">Promote</button> @*Mergem spre functia din controller care face campul de moderator=true*@
+                                            <button class="btn btn-success promote-btn" type="submit">Promote</button> @*Mergem spre functia din controller care face campul de moderator=true*@
                                         </form>
 
                                         <form asp-controller="Workspaces" asp-action="RemoveMember" method="post">
                                             @*in dreptul fiecarui user va fi un buton de remove :(*@
                                             <input type="hidden" name="WorkspaceId" value="@user.WorkspaceId" />
                                             <input type="hidden" name="UserId" value="@user.UserId" />
-                                            <button class="btn btn-danger" type="submit">Remove</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace*@
+                                            <button class="btn btn-danger remove-btn" type="submit">Remove</button> @*Mergem spre functia din controller ce da remove la legatura user-workspace*@
                                         </form>
                                     }
 
@@ -218,7 +225,7 @@
 
 @if (ViewBag.AfisareButoane == true) @*Doar Admin/Editor/Moderatorii de pe workspace pot adauga canal*@
 {
-    <a class="btn btn-success add-channel-button" asp-controller="Channels" asp-action="New" asp-route-id="@Model.WorkspaceId">Add a new channel!</a>
+    <a class="btn btn-success channel-add" asp-controller="Channels" asp-action="New" asp-route-id="@Model.WorkspaceId">Add a new channel!</a>
 }
 
 @*
