@@ -1,0 +1,52 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+h2, div, form, p {
+    font-family: "Inter", serif;
+}
+
+p {
+    font-family: "Gelasio", serif;
+}
+
+label {
+    font-family: "Inter", serif;
+    font-size: 16px;
+}
+
+h2 {
+    color: black;
+    text-align: left;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.btn-delete {
+    background-color: var(--dark-accent-color);
+    color: white;
+    text-decoration: none;
+    margin: 5px;
+    text-align: center;
+}
+
+.btn-edit:hover {
+    background-color: var(--accent-color);
+}
+
+.btn-back {
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    margin: 5px;
+    text-align: center;
+}
+
+.btn-enter:hover {
+    background-color: var(--accent-color);
+}
+
+p {
+    padding-left: 10px;
+    justify-content: flex-start;
+}

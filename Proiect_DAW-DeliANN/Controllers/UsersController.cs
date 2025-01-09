@@ -113,6 +113,7 @@ namespace ArticlesApp.Controllers
                          .Include("ApplicationUserWorkspaces")
                          .Include("Posts")
                          .Include("Reactions")
+                         .Include("Profile")
                          .Where(u => u.Id == id)
                          .First();
 
@@ -141,6 +142,18 @@ namespace ArticlesApp.Controllers
                 foreach (var user_workspace in user.ApplicationUserWorkspaces)
                 {
                     db.ApplicationUserWorkspaces.Remove(user_workspace);
+                }
+            }
+
+            db.Profiles.Remove(user.Profile); //remove la profil
+
+            var userCreatedWorkspaces = db.Workspaces //trebuie sterse si workspace-urile create de user-ul ce va fi sters (altfel eroare null FK)
+                                            .Where(w => w.UserId == id)
+                                            .ToList();
+
+            if (userCreatedWorkspaces.Count > 0) { //remove la workspace-urile create de user
+                foreach (var workspace in userCreatedWorkspaces) { 
+                    db.Workspaces.Remove(workspace);
                 }
             }
 

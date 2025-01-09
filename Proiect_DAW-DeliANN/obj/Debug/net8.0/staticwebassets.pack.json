@@ -5,8 +5,40 @@
       "PackagePath": "staticwebassets\\Proiect_DAW-DeliANN.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\ChannelStyle.css",
+      "PackagePath": "staticwebassets\\css\\ChannelStyle.css"
+    },
+    {
       "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\FormStylings.css",
       "PackagePath": "staticwebassets\\css\\FormStylings.css"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\IndexCateg.css",
+      "PackagePath": "staticwebassets\\css\\IndexCateg.css"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\IndexUsers.css",
+      "PackagePath": "staticwebassets\\css\\IndexUsers.css"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\Login.css",
+      "PackagePath": "staticwebassets\\css\\Login.css"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\ProfileShow.css",
+      "PackagePath": "staticwebassets\\css\\ProfileShow.css"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\Register.css",
+      "PackagePath": "staticwebassets\\css\\Register.css"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\ShowCateg.css",
+      "PackagePath": "staticwebassets\\css\\ShowCateg.css"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\ShowUser.css",
+      "PackagePath": "staticwebassets\\css\\ShowUser.css"
     },
     {
       "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\css\\WorkspaceIndex.css",
@@ -29,8 +61,36 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\99bedc7d9de457189e8d878d82628df4.jpg",
+      "PackagePath": "staticwebassets\\images\\99bedc7d9de457189e8d878d82628df4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\armaggedon.jpg",
+      "PackagePath": "staticwebassets\\images\\armaggedon.jpg"
+    },
+    {
       "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\defaultProfile.png",
       "PackagePath": "staticwebassets\\images\\defaultProfile.png"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\grungereala.jpg",
+      "PackagePath": "staticwebassets\\images\\grungereala.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\la gramada.jpg",
+      "PackagePath": "staticwebassets\\images\\la gramada.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\metaleog.png",
+      "PackagePath": "staticwebassets\\images\\metaleog.png"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\nonrocc.jpg",
+      "PackagePath": "staticwebassets\\images\\nonrocc.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\plng.jpg",
+      "PackagePath": "staticwebassets\\images\\plng.jpg"
     },
     {
       "Id": "C:\\Users\\DelianDan\\OneDrive - unibuc.ro\\Desktop\\FMI\\FMI-Anul 2\\Semestrul 1\\ASP.Net\\Proiect_DAW-DeliANN\\Proiect_DAW-DeliANN\\wwwroot\\images\\zilla.png",

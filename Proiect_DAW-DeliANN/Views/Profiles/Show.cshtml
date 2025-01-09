@@ -1,5 +1,25 @@
 ﻿@model Proiect_DAW_DeliANN.Models.Profile
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
 
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/ProfileShow.css" rel="stylesheet" />
 <h2>Profile Details</h2>
 <br />
 
@@ -14,15 +34,19 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Displayed name: @Model.DisplayName</h4>
-        <p class="card-text">Email: @Model.User.Email</p>
-        <img src="@Model.ProfileImage" alt="Profile Image" class="img-thumbnail" style="width:150px; height:150px;" />
-        <p class="card-text mt-3"><strong>Bio:</strong> @Model.Bio</p>
-        <p class="card-text"><strong>Status:</strong> @ViewBag.Status</p>
+        <div class="left-side">
+            <h4 class="card-title">Displayed name: @Model.DisplayName</h4>
+            <p class="card-text"><strong>Email:</strong> @Model.User.Email</p>
+            <img src="@Model.ProfileImage" alt="Profile Image" class="img-thumbnail" style="width:150px; height:150px;" />
+        </div>
+        <div class="right-side">
+            <p class="card-text mt-3" style="text-align: center"><strong>Bio:</strong> @Model.Bio</p>
+            <p class="card-text" style=" text-align: center"><strong>Status:</strong> @ViewBag.Status</p>
 
-        @if(ViewBag.EsteAdmin || ViewBag.EsteEditor || ViewBag.OwnProfile)
-        {
-            <a class="btn btn-success" asp-controller="Profiles" asp-action="Edit" asp-route-id="@Model.ProfileId">Edit Profile</a>
-        }
+            @if (ViewBag.EsteAdmin || ViewBag.EsteEditor || ViewBag.OwnProfile)
+            {
+                <a class="btn" asp-controller="Profiles" asp-action="Edit" asp-route-id="@Model.ProfileId"><i class="bi bi-pen"></i> Edit Your Profile</a>
+            }
+        </div>
     </div>
 </div>

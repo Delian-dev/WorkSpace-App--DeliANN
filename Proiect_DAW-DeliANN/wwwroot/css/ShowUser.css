@@ -1,0 +1,43 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+h2, div, form, p {
+    font-family: "Inter", serif;
+}
+
+.cont {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.card {
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.btn, .btn-no-hover {
+    background-color: var(--deep-dark-color);
+    border: none;
+    font-size: 15px;
+    color: #f9f9f9;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.btn-no-hover {
+    text-align: center;
+    border-radius: 10%;
+    padding: 10px 10px 10px 10px;
+    margin: 5px 5px 5px 5px;
+}
+
+.btn:hover {
+    background-color: var( --accent-color);
+    color: #f9f9f9;
+}

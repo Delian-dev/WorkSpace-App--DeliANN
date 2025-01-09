@@ -46,16 +46,21 @@ namespace Proiect_DAW_DeliANN.Controllers
         //    return View();
         //}
         [Authorize(Roles = "User,Editor,Admin")]
-        public IActionResult Show(int id)
-        {
+        public IActionResult Show(int id) //de selectat lista de useri din workspace (poza+username) - de pus userul adecvat in dreptul mesajului (cel care l-a postat)
+        {                                   //bonus - lista cu toti userii constant prezenta in show (dreapta)
             //canalul care este afisat => toate mesajele din el
-            Channel channel = db.Channels.Include("Posts")
-                                           //.Include("User")
-                                           .Include("Posts.User")
-                                           //.Include("Profile")
-                                           //.Include("User").Include("User.Profile")
-                                           .Where(pst => pst.ChannelId == id)
-                                           .First();
+            //Channel channel = db.Channels.Include("Posts")
+            //                               //.Include("User")
+            //                               .Include("Posts.User")
+            //                               .Include("Posts.User.Profile")
+            //                               .Where(pst => pst.ChannelId == id)
+            //                               .First();
+
+            Channel channel = db.Channels
+                    .Include(c => c.Posts)
+                        .ThenInclude(p => p.User)
+                            .ThenInclude(u => u.Profile)
+                    .FirstOrDefault(c => c.ChannelId == id);
 
 
             //    var channel = db.Channels
@@ -72,6 +77,8 @@ namespace Proiect_DAW_DeliANN.Controllers
                 .First();
             ViewBag.WorkspaceChannels = w.Channels;
             var users = db.ApplicationUserWorkspaces //selectam toti userii normali din workspace separat
+                        .Include(auw => auw.User)
+                            .ThenInclude(u => u.Profile)
                         .Where(u => u.WorkspaceId == w.WorkspaceId && u.status == true)
                         .Select(u => new
                         {
@@ -82,6 +89,8 @@ namespace Proiect_DAW_DeliANN.Controllers
                         }
                         ).ToList();
             ViewBag.Users = users;
+
+            SetAccessRights(wrkId);
             return View(channel);
 
         }
@@ -268,6 +277,28 @@ namespace Proiect_DAW_DeliANN.Controllers
             TempData["messageType"] = "alert-success";
 
             return Redirect("/Workspaces/Show/" + channel.WorkspaceId);
+        }
+
+        //pentru afisarea corespunzatoare a butoanelor in view
+        private void SetAccessRights(int? workspaceId)
+        {
+            ViewBag.AfisareButoane = false;
+
+            string currentUserId = _userManager.GetUserId(User); //afisam butoanele daca userul e Admin/Editor/Moderator pe workspace
+            bool isModerator = db.ApplicationUserWorkspaces
+                              .Any(auw => auw.UserId == currentUserId && auw.WorkspaceId == workspaceId && auw.moderator == true);
+
+            ViewBag.EsteModerator = isModerator;
+            if (User.IsInRole("Editor") || User.IsInRole("Admin") || isModerator)
+            {
+                ViewBag.AfisareButoane = true;
+            }
+
+            //de astea nush daca mai avem nevoie
+            ViewBag.UserCurent = _userManager.GetUserId(User);
+
+            ViewBag.EsteAdmin = User.IsInRole("Admin");
+            ViewBag.EsteEditor = User.IsInRole("Editor");
         }
 
         //[HttpPost]

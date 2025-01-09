@@ -1,5 +1,25 @@
 ﻿@model Proiect_DAW_DeliANN.Models.ApplicationUser
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
 
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/ShowUser.css" rel="stylesheet" />
 
 <div class="card mt-3" style="height:100%; width: 100%;">
 
@@ -11,11 +31,13 @@
 
             @if (ViewBag.Roles.Count > 0)
             {
-                <p><i class="bi bi-person"> </i> Roluri utilizator:</p>
-                @foreach (var role in ViewBag.Roles)
-                {
-                    <span class="rounded-pill bg-dark mr-2 px-4 py-2 text-white">@role</span>
-                }
+                <div class="mt-2 cont">
+                    <p><i class="bi bi-person"> </i> Roluri utilizator:</p>
+                    @foreach (var role in ViewBag.Roles)
+                    {
+                        <span class="btn-no-hover">@role</span>
+                    }
+                </div>
             }
         </div>
 
@@ -25,7 +47,7 @@
         {
             <div class="d-flex flex-row justify-content-between p-3">
                 <form asp-controller="Users" asp-action="Delete" method="post" asp-route-id="@Model.Id">
-                    <button type="submit" class="btn btn-danger">Sterge utilizator</button>
+                    <button type="submit" class="btn"><i class="bi bi-trash-fill"></i> Delete</button>
                 </form>
             </div>
         }
