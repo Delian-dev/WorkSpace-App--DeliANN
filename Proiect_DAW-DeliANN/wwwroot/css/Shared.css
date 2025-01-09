@@ -1,0 +1,85 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+h2, div, form {
+    font-family: "Inter", serif;
+}
+
+label {
+    font-family: "Inter", serif;
+    font-size: 16px;
+}
+
+header .navbar {
+    background-color: var( --dark-accent-color);
+    color: white;
+}
+
+    header .navbar a.navbar-brand {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+        header .navbar a.navbar-brand:hover {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+    header .navbar .nav-link {
+        color: white;
+        margin: 0 10px;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+    }
+
+        header .navbar .nav-link:hover {
+            color: var(--secondary-color);
+        }
+
+    header .navbar .navbar-toggler {
+        border: none;
+    }
+
+    /*    header .navbar .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFFFFF' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }*/
+
+    header .navbar .nav-item {
+        flex-grow: 1;
+        text-align: center; /* Equal spacing for all nav items */
+    }
+
+header .navbar-collapse {
+    justify-content: space-between;
+}
+
+header a {
+    background-color: var( --dark-accent-color) !important;
+    border-radius: 5%;
+    color: white !important;
+}
+
+    header a:hover {
+        background-color: var(--secondary-color) !important;
+        border-radius: 5%;
+    }
+
+header {
+    width: 100% !important;
+}
+
+footer {
+    width: 100% !important;
+    height: 50px;
+    justify-self: center;
+    background-color: var( --dark-accent-color) !important;
+    color: white !important;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    margin: 0px;
+    width: 100%;
+}

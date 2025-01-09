@@ -1,8 +1,110 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+<link href="~/css/HomePage.css" rel="stylesheet" />
+<div class="container">
+
+
+    <section class="gif-section">
+        <img src="/images/sky.gif" alt="Background GIF">
+        <h1>Welcome to The Future Of Workplace Collaborations</h1>
+
+    </section>
+
+    <!-- What's the App About Section -->
+    <div class="section s1">
+        <div class="first">
+            <h2>What’s our App About?</h2>
+            <p>
+                Our app is designed to streamline your experience and make your life easier. Whether you're managing tasks,
+                exploring content, or connecting with others, our platform provides the tools you need in an intuitive and
+                user-friendly way.
+            </p>
+        </div>
+        <div class="second">
+            <img src="/images/10-Smart-Ways-to-Better-Team-Collaboration-1.png" alt="Background collaboration" width="650px">
+        </div>
+    </div>
+
+    <!-- Functionalities Section -->
+    <div class="section s2">
+        <div class="func">
+            <h2>Functionalities</h2>
+            <p>
+                Here’s what you can do with our app:
+            </p>
+            <ul>
+                <li>Create and manage your personal profile</li>
+                <li>Explore a variety of workspaces - focused on different categories</li>
+                <li>Collaborate with team memberss</li>
+                <li>Share updates - both media and text</li>
+                <li>Join the newest collaboration platform!</li>
+            </ul>
+        </div>
+        <div class="slideshow-container">
+            <img src="/images/edit.png" alt="Photo 1" width=" 300px" height="300px">
+            <img src="/images/free-search-icon-337-thumb.png" alt="Photo 2" width="300px" height="300px">
+            <img src="/images/send.png" alt="Photo 3" width="300px" height="300px">
+            <img src="/images/hands.png" alt="Photo 4" width="300px" height="300px">
+        </div>
+    </div>
+    <div class="section">
+        <h2 class="center-head">Explore the Features</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="/images/image1.jpg" alt="Index Workspaces">
+                <p class="caption">Workspaces: You can search, join or create your own!</p>
+            </div>
+            <div class="gallery-item">
+                <img src="/images/image2.jpg" alt="Show Workspace">
+                <p class="caption">In a workspace, you can find a list of channels and users!</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image3.jpg" alt="Show Channel">
+                <p class="caption">On a channel you can see other posts and their creators!</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image4.jpg" alt="Add Post">
+                <p class="caption">You can add posts - both text and media!</p>
+            </div>
+        </div>
+
+    </div>
+    <!-- Team Section -->
+    <div class="section s3">
+
+        <h2 class="center-head">Meet Our Team!</h2>
+        <div class="team-members">
+            <div class="team-member">
+                <img src="/images/kitty1.jpg" alt="Team Member 1" width="150px" height="150px">
+                <h4>Gheboeanu Anita</h4>
+                <p> Developer</p>
+            </div>
+            <div class="team-member">
+                <img src="images/kitty2.jpg" alt="Team Member 2" width="150px" height="150px">
+                <h4>Dan Delian</h4>
+                <p>Developer</p>
+            </div>
+
+        </div>
+    </div>
 </div>

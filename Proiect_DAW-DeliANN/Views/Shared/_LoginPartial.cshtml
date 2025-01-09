@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using Microsoft.EntityFrameworkCore; 
+@using Microsoft.EntityFrameworkCore;
 @*EntityFrameWorkCore pt a putea folosi .Include si restul de metode linq*@
 <!-- PASUL 7: useri si roluri-->
 @inject SignInManager<ApplicationUser> SignInManager
@@ -7,42 +7,63 @@
 
 @inject Proiect_DAW_DeliANN.Data.ApplicationDbContext db
 @*injectam db-ul nostru pt a putea face rost de profil*@
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-     string displayName = "User"; // Default display name
-     string userId = UserManager.GetUserId(User); // Get current user ID
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
 
-     // Fetch the display name for the logged-in user
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/Partial.css" rel="stylesheet" />
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        string displayName = "User"; // Default display name
+        string userId = UserManager.GetUserId(User); // Get current user ID
+
+        // Fetch the display name for the logged-in user
         var currentUser = await db.ApplicationUsers
         .Include(u => u.Profile) // Ensure Profile is loaded
         .FirstOrDefaultAsync(u => u.Id == userId);
 
-     if (currentUser?.Profile?.DisplayName != null)
-     {
-         displayName = currentUser.Profile.DisplayName;
-     }
+        if (currentUser?.Profile?.DisplayName != null)
+        {
+            displayName = currentUser.Profile.DisplayName;
+        }
 
-     @*liniile de sus sunt date de gepeto ca idee*@
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account Settings</a> @*lasam si chestia asta a lor dar o numim account settings*@
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-controller="Profiles" asp-action="Show" asp-route-id="@userId" title="Your Profile">Hello @displayName!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
+        @*liniile de sus sunt date de gepeto ca idee*@
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account Settings</a> @*lasam si chestia asta a lor dar o numim account settings*@
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Profiles" asp-action="Show" asp-route-id="@userId" title="Your Profile">Hello @displayName!</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link link-header">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link link-header" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link link-header" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
 </ul>
