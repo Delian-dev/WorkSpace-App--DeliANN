@@ -15,7 +15,6 @@ body {
     width: 100%;
     color: white;
     margin: 0;
-    padding: 20px;
 }
 
 .text-center {
@@ -27,18 +26,15 @@ h2 {
     padding-bottom: 10px;
     display: flex;
     justify-content: center;
+    color: black;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 .card {
     padding-bottom: 10px;
     padding-top: 10px;
-}
-
-h2 {
-    color: black;
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
 }
 
 
@@ -135,7 +131,17 @@ h2 {
         background-color: var(--accent-color);
     }
 
-.container {
+/*.container {
     display: flex;
     justify-content: space-between;
+}*/
+
+.container{
+    width: 60%;
+}
+
+.container-custom {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
