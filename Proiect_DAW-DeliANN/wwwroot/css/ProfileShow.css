@@ -1,0 +1,47 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+h2, div, form {
+    font-family: "Inter", serif;
+}
+
+.card {
+    display: flex;
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.left-side {
+    flex: 1;
+    text-align: center;
+}
+
+    .left-side img {
+        border-radius: 50%;
+        margin-top: 10px;
+    }
+
+.right-side {
+    flex: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn {
+    background-color: var( --secondary-color);
+    color: white;
+    text-decoration: none;
+    margin: 5px;
+    text-align: center;
+}
+
+    .btn:hover {
+        background-color: var(--dark-accent-color);
+        color: white;
+    }

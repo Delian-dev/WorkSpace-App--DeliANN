@@ -1,37 +1,62 @@
 ﻿@model Proiect_DAW_DeliANN.Models.Post
-<h2>Editare postare</h2>
-<br />
 
+@{
+    ViewBag.Title = "Editare categorie";
+}
+
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/FormStylings.css" rel="stylesheet" />
+
+<h2 class="text-center mt-5" >Edit Post</h2>
 
 <form asp-action="Edit" asp-controller="Posts" asp-route-id="@Model.PostId" method="post">
 
     <div class="form-group">
         <input type="hidden" name="ChannelId" value="@Model.ChannelId" />
-        <label asp-for="Content" class="form-label">Conținut postare</label>
+        <label asp-for="Content" class="form-label">Post Content</label>
 
         <br />
-        <textarea asp-for="Content" class="form-control"></textarea>
+        <textarea asp-for="Content" class="form-control custom-textarea"></textarea>
         <span asp-validation-for="Content" class="text-danger"></span>
 
-        <div class="form-group mb-3">
+        <br />
             <label class="form-label">Post Type</label>
             <div>
-                <input type="radio" id="typeImportant" name="Type" value="true"
+                <input type="radio" id="typeImportant" name="Type" value="true" class="custom-input"
                 @(Model.Type ? "checked" : "") />
                 <label for="typeImportant">Important</label>
             </div>
             <div>
-                <input type="radio" id="typeNormal" name="Type" value="false"
+                <input type="radio" id="typeNormal" name="Type" value="false" class="custom-input"
                 @(!Model.Type ? "checked" : "") />
                 <label for="typeNormal">Normal</label>
             </div>
             @*<span asp-validation-for="Type" class="text-danger"></span>*@
-        </div>
+ 
     </div>
 
     <br /><br />
 
-    <button class="btn btn-primary" type="submit">Editează postarea</button>
+    <button class="btn btn-primary custom-btn" type="submit">Save Changes</button>
 
 </form>
 

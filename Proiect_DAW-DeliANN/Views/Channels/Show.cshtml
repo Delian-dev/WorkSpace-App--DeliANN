@@ -1,4 +1,27 @@
 ﻿@model Proiect_DAW_DeliANN.Models.Channel
+
+@{
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/ChannelStyle.css" rel="stylesheet" />
+
 <div class="card">
 
     <div class="card-body">
@@ -20,9 +43,9 @@
 
 <br />
 <div class="container mt-3">
-    <div class="row">
+    <div class="d-flex flex-row justify-content-between">
         <!-- Left column for Workspace Channels -->
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="bg-light p-3 rounded">
                 <h5>Channels</h5>
                 <ul class="list-unstyled">
@@ -51,74 +74,121 @@
         </div>*@
 
 
-        <div class="col-md-8 card">
-            <div>
-                <br />
+        <div class="col-md-6">
+            <div class="scrollable">
                 @foreach (var post in Model.Posts)
                 {
                     <div class="container mb-4 p-3 border rounded">
-                        <p>@post.Content</p>
-                        @*@if (@post.Media != null)
-                    {
-                    <img src="@post.Media" alt="Media" class="img-thumbnail" style="width:150px; height:150px;" />
-                    }*@
-                        @if (@post.Media != null)
+                        <div class="d-flex flex-row justify-content-between">
+                            <a asp-controller="Profiles" asp-action="Show" asp-route-id="@post.User.Profile.UserId" class="d-flex align-items-center text-decoration-none">
+                                <img src="@post.User.Profile.ProfileImage" alt="Profile Picture" class="rounded-circle me-3" style="width: 50px; height: 50px;" />
+                                <span class="display-username">
+                                    <strong>@post.User.Profile.DisplayName</strong>
+                                </span>
+                            </a>
+
+                            <small class="text-muted">@post.Date</small>
+                        </div>
+
+
+                        <div class="d-flex flex-row justify-content-around align-items-center">
+                            <p>@post.Content</p>
+                            @*@if (@post.Media != null)
                         {
-                            string extension = (post.Media).Split(".")[1].ToLower();
+                        <img src="@post.Media" alt="Media" class="img-thumbnail" style="width:150px; height:150px;" />
+                        }*@
+                            @if (@post.Media != null)
+                            {
+                                string extension = (post.Media).Split(".")[1].ToLower();
 
 
-                            @if (new[] { "jpg", "jpeg", "png", "gif" }.Contains(extension))
-                            {
-                                <img src="@post.Media" alt="Media" class="img-thumbnail" style="width:150px; height:150px;" />
+                                @if (new[] { "jpg", "jpeg", "png", "gif" }.Contains(extension))
+                                {
+                                    <img src="@post.Media" alt="Media" class="img-thumbnail" style="width:150px; height:150px;" />
+                                }
+                                else if (extension == "mp4")
+                                {
+                                    <video controls style="max-width:560;">
+                                        <source src="@post.Media" type="video/mp4" />
+                                    </video>
+                                }
+                                else
+                                {
+                                    <video controls style="max-width:560;">
+                                        <source src="@post.Media" />
+                                    </video>
+                                }
                             }
-                            else if (extension == "mp4")
-                            {
-                                <video controls style="max-width:560;">
-                                    <source src="@post.Media" type="video/mp4" />
-                                </video>
-                            }
-                            else
-                            {
-                                <video controls style="max-width:560;">
-                                    <source src="@post.Media" />
-                                </video>
-                            }
-                        }
+                        </div>
+
+                     
                         @*@foreach (var user in ViewBag.Users)
                     {
                     @if @post.User.UserId
                     }*@
-                        <small class="text-muted">@post.Date</small>
-                        <strong><i class="bi bi-person"></i> @post.User.UserName</strong>
 
-                        <div class="mt-3">
-                            <!-- Edit Button -->
-                            <a asp-controller="Posts" asp-action="Edit" asp-route-id="@post.PostId" class="btn btn-primary btn-sm">
-                                <i class="bi bi-pencil"></i> Edit
-                            </a>
+                        @if (ViewBag.AfisareButoane == true || post.UserId == ViewBag.UserCurent)
+                        {
 
-                            <!-- Delete Button -->
-                            <form asp-action="Delete" asp-controller="Posts" asp-route-id=" @post.PostId" method="post" class="d-inline">
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="bi bi-trash"></i> Delete
-                                </button>
-                            </form>
+                            <div class="d-flex flex-row justify-content-center align-items-center post-btns">
+                                <!-- Edit Button -->
+                                <a asp-controller="Posts" asp-action="Edit" asp-route-id="@post.PostId" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-pencil"></i> Edit
+                                </a>
 
-                            @*<a href="#reply-form" asp-action="Show" asp-controller="Channels"
+                                <!-- Delete Button -->
+                                <form asp-action="Delete" asp-controller="Posts" asp-route-id=" @post.PostId" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
+
+                                @*<a href="#reply-form" asp-action="Show" asp-controller="Channels"
                         class="btn btn-info btn-sm ms-2" data-parent-id="@post.PostId">
                         <i class="bi bi-reply"></i> Reply
                         </a>*@
 
-                            <!-- Reply Form for the current post -->
+                                <!-- Reply Form for the current post -->
 
-                        </div>
+                            </div>
+                        }
                     </div>
                 }
-            </div>
 
+            </div>
+            <a class="btn btn-primary btn-sm w-100" asp-area="" asp-controller="Posts" asp-action="New" asp-route-id="@Model.ChannelId">Add a post!</a>
+        </div>
+
+        @*Afisare lista useri*@
+        <div class="d-flex flex-column justify-content-start">
+            <h4 class="section-title text-center">Members:</h4>
+
+            <div class="users-container">
+                @if (ViewBag.Users != null && ViewBag.Users.Count > 0)
+                {
+                    <ul class="list-group">
+                        @foreach (var user in ViewBag.Users)
+                        {
+                            <li class="list-group-item d-flex align-items-center">
+                                @*orice user poate vizualiza ceilalti useri*@
+                                <a asp-controller="Profiles" asp-action="Show" asp-route-id="@user.UserId" class="d-flex align-items-center text-decoration-none">
+                                    <img src="@user.ProfileImage" alt="Profile Picture" class="rounded-circle me-3" style="width: 50px; height: 50px;" />
+                                    <span class="display-username">
+                                        <strong>@user.DisplayName</strong>
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No current members.</p>
+                }
+            </div>
         </div>
 
     </div>
-    <a class="btn btn-primary btn-sm" asp-area="" asp-controller="Posts" asp-action="New" asp-route-id="@Model.ChannelId">Add a post!</a>
+   
 </div>
 

@@ -37,29 +37,33 @@ namespace Proiect_DAW_DeliANN.Controllers
         }
         //Delete pe post => ai voie doar ca admin/editor/tu care l-a scris/mod
         [HttpPost]
-        [Authorize(Roles = "User,Editor,Admin")]
+        [Authorize(Roles = "User,Editor,Admin")]    //DE SETAT ACCESSRIGHTS PE BAZA ROLULUI IN WORKSPACE (LA FEL CA IN WORKSPACE SHOW) - PENTRU CA APOI IN VIEW SA STIM CAND SAU NU AFISAM BUTOANELE DE EDIT/DELETE
         public IActionResult Delete(int id)
         {
-            Post post = db.Posts.Include("Reactions").Include("User")
-                        .Where(p => p.PostId == id).FirstOrDefault();
-            Console.WriteLine(post.PostId);
+            Post post = db.Posts
+               .Include(p => p.Channel)
+               .FirstOrDefault(p => p.PostId == id);
             if (post == null)
             {
-                return NotFound();
+                return Forbid();
             }
-            if (!User.IsInRole("Admin") && !User.IsInRole("Editor"))
-            {
-                var userId = _userManager.GetUserId(User);
 
-                var userWorkspace = db.ApplicationUserWorkspaces
-                                      .FirstOrDefault(uw => uw.UserId == userId && uw.moderator == true);
-                if (userWorkspace == null || post.UserId != userId)
-                {
-                    //TempData["message"] = "You can't delete this post";
-                    //TempData["messageType"] = "alert-danger";
-                    return Redirect("/Channels/Show/" + post.ChannelId);
-                }
-            }
+            //facem rost de workspace-ul in care se afla postarea
+            int? workspaceId = post.Channel.WorkspaceId;
+
+            var userId = _userManager.GetUserId(User);
+
+            var userWorkspace = db.ApplicationUserWorkspaces //verifica daca userul e moderator in workspace
+                                  .FirstOrDefault(uw => uw.UserId == userId && uw.WorkspaceId == workspaceId && uw.moderator == true);
+
+
+            Console.WriteLine(userWorkspace);
+            if (!User.IsInRole("Admin") && !User.IsInRole("Editor") && userWorkspace == null && post.UserId != userId) //aceeasi modificare ca la edit
+            {
+                //TempData["message"] = "You can't edit this post";
+                //TempData["messageType"] = "alert-danger";
+                return Redirect("/Channels/Show/" + post.ChannelId);
+            } 
             db.Posts.Remove(post);
             db.SaveChanges();
 
@@ -72,23 +76,30 @@ namespace Proiect_DAW_DeliANN.Controllers
         [Authorize(Roles = "User,Editor,Admin")]
         public IActionResult Edit(int id)
         {
-            Post post = db.Posts.Find(id);
+            Console.WriteLine("Vreau sa editez!");
+            Post post = db.Posts
+               .Include(p => p.Channel)
+               .FirstOrDefault(p => p.PostId == id);
             if (post == null)
             {
                 return Forbid();
             }
-            if (!User.IsInRole("Admin") && !User.IsInRole("Editor"))
-            {
-                var userId = _userManager.GetUserId(User);
+            Console.WriteLine(post.ChannelId);
+            //facem rost de workspace-ul in care se afla postarea
+            int? workspaceId = post.Channel.WorkspaceId;
+            Console.WriteLine(workspaceId);
+            var userId = _userManager.GetUserId(User);
 
-                var userWorkspace = db.ApplicationUserWorkspaces
-                                      .FirstOrDefault(uw => uw.UserId == userId);
-                if (userWorkspace == null || post.UserId != userId)
-                {
-                    TempData["message"] = "You can't edit this post";
-                    TempData["messageType"] = "alert-danger";
+            var userWorkspace = db.ApplicationUserWorkspaces //verifica daca userul e moderator in workspace
+                                  .FirstOrDefault(uw => uw.UserId == userId && uw.WorkspaceId == workspaceId && uw.moderator == true);
+
+            
+            Console.WriteLine(userWorkspace);
+            if (!User.IsInRole("Admin") && !User.IsInRole("Editor") && userWorkspace == null && post.UserId != userId) //aceeasi modificare ca la edit
+            {
+                    //TempData["message"] = "You can't edit this post";
+                    //TempData["messageType"] = "alert-danger";
                     return Redirect("/Channels/Show/" + post.ChannelId);
-                }
             }
             return View(post);
         }
@@ -97,25 +108,31 @@ namespace Proiect_DAW_DeliANN.Controllers
         [Authorize(Roles = "User,Editor,Admin")]
         public IActionResult Edit(int id, Post requestPost)
         {
-            Post post = db.Posts.Find(id);
+            Post post = db.Posts
+               .Include(p => p.Channel)
+               .FirstOrDefault(p => p.PostId == id);
             if (post == null)
             {
                 return Forbid();
             }
+    
+            //facem rost de workspace-ul in care se afla postarea
+            int? workspaceId = post.Channel.WorkspaceId;
 
-            if (!User.IsInRole("Admin") && !User.IsInRole("Editor"))
+            var userId = _userManager.GetUserId(User);
+
+            var userWorkspace = db.ApplicationUserWorkspaces //verifica daca userul e moderator in workspace
+                                  .FirstOrDefault(uw => uw.UserId == userId && uw.WorkspaceId == workspaceId && uw.moderator == true);
+
+
+            Console.WriteLine(userWorkspace);
+            if (!User.IsInRole("Admin") && !User.IsInRole("Editor") && userWorkspace == null && post.UserId != userId) //aceeasi modificare ca la edit
             {
-                Console.WriteLine("Boom");
-                var userId = _userManager.GetUserId(User);
-
-                var userWorkspace = db.ApplicationUserWorkspaces
-                                      .FirstOrDefault(uw => uw.UserId == userId);
-
-                if (userWorkspace == null || post.UserId != userId)
-                {
-                    return Forbid();
-                }
+                //TempData["message"] = "You can't edit this post";
+                //TempData["messageType"] = "alert-danger";
+                return Forbid();
             }
+
             if (ModelState.IsValid)
             {
                 if (requestPost.ChannelId != post.ChannelId)
@@ -180,7 +197,7 @@ namespace Proiect_DAW_DeliANN.Controllers
 
         [HttpPost]
         [Authorize(Roles = "User,Editor,Admin")]
-        public async Task<IActionResult> New(Post post, IFormFile Media)
+        public async Task<IActionResult> New(Post post, IFormFile Media) //de reparat new-ul astfel incat sa putem incarca postare si fara continut media
         {
             var sanitizer = new HtmlSanitizer();
 
@@ -204,8 +221,10 @@ namespace Proiect_DAW_DeliANN.Controllers
 
             post.Date = DateTime.Now;
             post.UserId = _userManager.GetUserId(User);
+            Console.WriteLine("test media2");
             if (Media != null && Media.Length > 0)
             {
+                Console.WriteLine("test media3");
                 //Verificam extensia
                 var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".mp4", ".mov" };
                 var fileExtension = Path.GetExtension(Media.FileName).ToLower();
@@ -227,10 +246,12 @@ namespace Proiect_DAW_DeliANN.Controllers
             }
             else
             {
+                Console.WriteLine("test media4");
                 post.Media = null;
             }
-            if (TryValidateModel(post))
+            if(post.Content!=null)
             {
+                Console.WriteLine("test media5");
                 post.Content = sanitizer.Sanitize(post.Content);
                 // Adăugare articol
                 db.Posts.Add(post);
@@ -241,5 +262,6 @@ namespace Proiect_DAW_DeliANN.Controllers
 
             return View(post);
         }
+
     }
 }

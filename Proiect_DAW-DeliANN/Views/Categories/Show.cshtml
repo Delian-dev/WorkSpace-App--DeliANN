@@ -1,6 +1,28 @@
 ﻿@model Proiect_DAW_DeliANN.Models.Category
+
 @{
-    ViewBag.Title = "Afisare categorie";
+    // Definim culorile
+    var primaryColor = "#BE95BE";
+    var secondaryColor = "#9B629B";
+    var accentColor = "#813D81";
+    var darkAccentColor = "#692369";
+    var deepDarkColor = "#4D0C4D";
+}
+
+<!-- Injectam variabilele css in pagina -->
+<style>
+    :root {
+        --primary-color: @primaryColor;
+        --secondary-color: @secondaryColor;
+        --accent-color: @accentColor;
+        --dark-accent-color: @darkAccentColor;
+        --deep-dark-color: @deepDarkColor;
+    }
+</style>
+
+<link href="~/css/ShowCateg.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Show Category:";
 }
 
 
@@ -8,22 +30,25 @@
 
 <br />
 
-<p>@Model.CategoryName</p>
+
+<p><i class="bi bi-globe"></i> @Model.CategoryName</p>
 
 
 <form method="post" asp-controller="Categories" asp-action="Delete"
       asp-route-id="@Model.CategoryId">
 
-    <button class="btn btn-danger" type="submit">Sterge categoria</button>
-
+    <div class="container mt-2">
+        <a class="btn btn-back alert-success" href="/Categories/Index/"><i class="bi bi-arrow-left"></i> Return to Category List</a>
+        <button class="btn btn-delete" type="submit"><i class="bi bi-trash-fill"></i> Delete</button>
+    </div>
 </form>
 
 <br />
 
-<a class="btn alert-success" href="/Categories/Index/">Afisare lista categorii</a>
+
 
 <br />
-<hr />
+<br />
 <br />
 
 

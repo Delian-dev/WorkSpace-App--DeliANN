@@ -1,0 +1,22 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+h2, div, form, p, h1, h3 {
+    font-family: "Inter", serif;
+}
+
+.btn-log {
+    border-color: var(--dark-accent-color);
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    margin: 5px;
+}
+
+    .btn-log:hover {
+        background-color: var(--dark-accent-color);
+        color: white;
+        border-color: var(--secondary-color);
+    }
