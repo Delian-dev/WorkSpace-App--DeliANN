@@ -24,17 +24,13 @@
 }
 
 <h2>@ViewBag.Title</h2>
-<br />
 
 @if (TempData.ContainsKey("message"))
 {
     <h1>@ViewBag.message</h1>
 }
 
-<br />
 <a class=" btn btn-new d-flex justify-content-center" asp-controller="Categories" asp-action="New">Add a new category</a>
-<br />
-<br />
 @foreach (Proiect_DAW_DeliANN.Models.Category category in ViewBag.Categories)
 {
     @*<div class="card">
@@ -57,12 +53,12 @@
             <div class="form-group">
                 <label asp-for="@category.CategoryName" class="form-label d-flex justify-content-center">Category:</label>
                 <div class=" d-flex justify-content-center">
-                    <i class="bi bi-globe"></i> @category.CategoryName
+                    <i class="bi bi-globe"></i>&nbsp; @category.CategoryName
 
                 </div>
             </div>
             <br />
-            <div class="container mt-2">
+            <div class="container mt-2 container-custom">
                 <a class="btn btn-enter" asp-controller="Categories" asp-action="Show" asp-route-id="@category.CategoryId">Show Category</a>
                 <a class="btn btn-edit" asp-controller="Categories" asp-action="Edit" asp-route-id="@category.CategoryId">Edit Category</a>
             </div>
