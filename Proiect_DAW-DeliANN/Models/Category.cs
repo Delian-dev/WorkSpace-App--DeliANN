@@ -7,7 +7,7 @@ namespace Proiect_DAW_DeliANN.Models
         [Key]
         public int CategoryId { get; set; }
 
-        [Required(ErrorMessage = "Numele categoriei este obligatoriu")]
+        [Required(ErrorMessage = "The Category must have a name!")]
         public string CategoryName { get; set; }
 
         public virtual ICollection<Workspace>? Workspaces { get; set; }

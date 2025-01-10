@@ -15,6 +15,8 @@ namespace Proiect_DAW_DeliANN.Models
         public string? ProfileImage {  get; set; } //imaginea de profil
 
         public string? Bio {  get; set; }
+
+        [Required(ErrorMessage = "The Username cannot be empty!")]
         public string? DisplayName { get; set; } //numele ce va fi afisat pentru user
         public bool? IsActive { get; set; } //statusul activ/inactiv/away
     }
