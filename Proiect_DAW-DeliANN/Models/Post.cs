@@ -17,6 +17,7 @@ namespace Proiect_DAW_DeliANN.Models
 
         public string? Media { get; set; }
 
+        [Required(ErrorMessage = "The channel is mandatory")]
         public int? ChannelId { get; set; }
 
         public virtual Channel? Channel { get; set; }
