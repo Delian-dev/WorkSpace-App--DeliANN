@@ -27,9 +27,9 @@ The app provides team-oriented features similar to Slack/Microsoft Teams, enabli
 
 ## 🛠️ Tech Stack
 
-- **Backend:** ASP.NET (C#)
-- **Frontend:** HTML, CSS, JavaScript
-- **Database:** SQL Server
+- **Backend:** ASP.NET (C#), LINQ
+- **Frontend:** HTML, CSS, BOOTSTRAP, BLAZOR
+- **Database:** SQL Server (Microsoft)
 - **Other:** Entity Framework, MVC pattern
 
 ---
@@ -61,15 +61,17 @@ Follow these steps to run the project locally:
 
 ## 📸 Screenshots
 
-### Home Page
-![Home Page](Proiect_DAW-DeliANN/wwwroot/images/image1.jpg)
+### Workspaces Page
+![Workspaces Page](Proiect_DAW-DeliANN/wwwroot/images/image1.jpg)
 
-### Login Page
-![Login Page](Proiect_DAW-DeliANN/wwwroot/images/image2.jpg)
+### Workspace Interface
+![Workspace Interface](Proiect_DAW-DeliANN/wwwroot/images/image2.jpg)
 
-### Dashboard
-![Dashboard](Proiect_DAW-DeliANN/wwwroot/images/image5.jpg)
+### Channels
+![Channels](Proiect_DAW-DeliANN/wwwroot/images/image5.jpg)
 
+### Add Posts
+![Add Posts](Proiect_DAW-DeliANN/wwwroot/images/image6.jpg)
 ---
 
 ## 📜 License
